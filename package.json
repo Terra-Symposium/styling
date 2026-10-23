@@ -1,0 +1,39 @@
+{
+  "name": "@terra-symposium/styling",
+  "version": "0.1.0",
+  "description": "Shared Terra UI and hue theming",
+  "license": "Apache-2.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "docs:build": "astro build --root docs",
+    "docs:dev": "astro dev --root docs"
+  },
+  "dependencies": {
+    "@radix-ui/colors": "^3.0.0",
+    "bezier-easing": "^2.1.0",
+    "colorjs.io": "^0.5.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^24.0.0",
+    "@types/bezier-easing": "^2.1.2",
+    "astro": "^7.4.2",
+    "@astrojs/react": "^7.1.0",
+    "@terra-symposium/docs": "file:vendor/terra-symposium-docs-0.1.0.tgz",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0"
+  }
+}
