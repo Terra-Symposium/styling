@@ -1,6 +1,8 @@
 # Terra Styling
 
-Public Apache 2.0 package for Terra hue palettes and reusable UI. The hue implementation is extracted from the Terra Symposium website. The UI component extraction is in progress; the first package build exports the hue functions and types.
+Public Apache 2.0 package for Terra hue palettes and reusable UI. The hue implementation and UI primitives are extracted from the Terra Symposium website.
+
+The package exports `Button`, `Select`, `ContextMenu`, `DropdownMenu`, `Tooltip`, `ToggleGroup`, `Input`, `Label`, `Separator`, `Spinner`, and the original Docs toolbar frame from `@terra-symposium/styling/ui`. Import `@terra-symposium/styling/ui.css` once to include their utility classes and default palette. Hosts can override the `--primary-*` and `--secondary-*` variables using the hue API. The original Tailwind preset is available as `@terra-symposium/styling/tailwind-preset` for hosts that compile additional components.
 
 ## Build
 

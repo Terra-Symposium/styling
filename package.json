@@ -1,6 +1,6 @@
 {
   "name": "@terra-symposium/styling",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Shared Terra UI and hue theming",
   "license": "Apache-2.0",
   "type": "module",
@@ -11,29 +11,60 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "import": "./dist/ui/index.js"
+    },
+    "./tailwind-preset": {
+      "types": "./dist/tailwind-preset.d.ts",
+      "import": "./dist/tailwind-preset.js"
+    },
+    "./ui.css": "./dist/ui.css"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tailwindcss -c tailwind.ui.config.mjs -i src/ui/source.css -o dist/ui.css --minify",
     "typecheck": "tsc --noEmit",
     "docs:build": "cd docs && ../node_modules/.bin/astro build",
     "docs:dev": "cd docs && ../node_modules/.bin/astro dev"
   },
   "dependencies": {
+    "@carbon/icons-react": "^11.91.0",
+    "@headlessui/tailwindcss": "^0.2.0",
     "@radix-ui/colors": "^3.0.0",
+    "@radix-ui/react-context-menu": "^2.4.1",
+    "@radix-ui/react-dropdown-menu": "^2.2.1",
+    "@radix-ui/react-label": "^2.1.17",
+    "@radix-ui/react-select": "^2.4.1",
+    "@radix-ui/react-separator": "^1.2.0",
+    "@radix-ui/react-slot": "^1.5.0",
+    "@radix-ui/react-toggle-group": "^1.2.1",
+    "@radix-ui/react-tooltip": "^1.4.1",
+    "@tailwindcss/typography": "^0.5.12",
     "bezier-easing": "^2.1.0",
-    "colorjs.io": "^0.5.2"
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "colorjs.io": "^0.5.2",
+    "lucide-react": "^1.61.0",
+    "tailwind-merge": "^3.7.0",
+    "tailwindcss": "^3.4.3",
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-scrim-gradients": "^0.4.2"
   },
   "devDependencies": {
-    "typescript": "^5.9.3",
-    "@types/node": "^24.0.0",
-    "@types/bezier-easing": "^2.1.2",
-    "astro": "^7.4.2",
     "@astrojs/react": "^7.1.0",
-    "@terra-symposium/docs": "file:vendor/terra-symposium-docs-0.1.0.tgz",
+    "@terra-symposium/docs": "file:vendor/terra-symposium-docs-0.1.6.tgz",
+    "@types/bezier-easing": "^2.1.2",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "astro": "^7.4.2",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0"
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }
