@@ -76,8 +76,8 @@ importers:
         specifier: ^7.1.0
         version: 7.1.1(@types/node@24.19.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(jiti@1.21.7)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(yaml@2.9.1)
       '@terra-symposium/docs':
-        specifier: file:vendor/terra-symposium-docs-0.1.6.tgz
-        version: file:vendor/terra-symposium-docs-0.1.6.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(yaml@2.9.1)
+        specifier: file:vendor/terra-symposium-docs-0.1.7.tgz
+        version: file:vendor/terra-symposium-docs-0.1.7.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(yaml@2.9.1)
       '@types/bezier-easing':
         specifier: ^2.1.2
         version: 2.1.6
@@ -1103,9 +1103,9 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || >=4.0.0 || insiders'
 
-  '@terra-symposium/docs@file:vendor/terra-symposium-docs-0.1.6.tgz':
-    resolution: {integrity: sha512-W/NBedpsLMf8E10b6DCOQ/ch3cCyXQxJMq1X4z4hcOU8k56b/Va0FTLV3KzTXd83nrAQf4sPYNiNRVTA7TJKdg==, tarball: file:vendor/terra-symposium-docs-0.1.6.tgz}
-    version: 0.1.6
+  '@terra-symposium/docs@file:vendor/terra-symposium-docs-0.1.7.tgz':
+    resolution: {integrity: sha512-/0ZfBD3L11HXieim5Gb8gbhHWwfRXIF4e/TfQJD4cxH/NzWkyxhZYtEmOp/mUD5eZ5kXeF3c/9+gU9q1MegetQ==, tarball: file:vendor/terra-symposium-docs-0.1.7.tgz}
+    version: 0.1.7
     engines: {node: '>=24.12.0'}
     peerDependencies:
       react: ^19.0.0
@@ -3268,7 +3268,7 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 3.4.19(yaml@2.9.1)
 
-  '@terra-symposium/docs@file:vendor/terra-symposium-docs-0.1.6.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(yaml@2.9.1)':
+  '@terra-symposium/docs@file:vendor/terra-symposium-docs-0.1.7.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(yaml@2.9.1)':
     dependencies:
       '@carbon/icons-react': 11.90.0(react@19.3.1)
       '@portabletext/editor': 7.9.0(@types/react@19.3.0)(react@19.3.1)

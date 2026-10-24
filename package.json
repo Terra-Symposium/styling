@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@astrojs/react": "^7.1.0",
-    "@terra-symposium/docs": "file:vendor/terra-symposium-docs-0.1.6.tgz",
+    "@terra-symposium/docs": "file:vendor/terra-symposium-docs-0.1.7.tgz",
     "@types/bezier-easing": "^2.1.2",
     "@types/node": "^24.0.0",
     "@types/react": "^19.3.0",
