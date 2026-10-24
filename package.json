@@ -16,8 +16,8 @@
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "docs:build": "astro build --root docs",
-    "docs:dev": "astro dev --root docs"
+    "docs:build": "cd docs && ../node_modules/.bin/astro build",
+    "docs:dev": "cd docs && ../node_modules/.bin/astro dev"
   },
   "dependencies": {
     "@radix-ui/colors": "^3.0.0",
