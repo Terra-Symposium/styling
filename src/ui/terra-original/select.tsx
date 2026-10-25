@@ -8,7 +8,7 @@ IMPORTS
 //////////////////////////////////////////////////*/
 
 // API
-import { cn } from './cn.js';
+import { cn } from '../cn.js';
 
 // COMPONENTS
 import * as React from 'react';
@@ -20,6 +20,7 @@ import { FORM_CONTROL_VARIANTS, OVERLAY_MOTION_VARIANTS, OVERLAY_SURFACE_VARIANT
 
 // TYPES
 import type { SelectSize } from './types.js';
+import { usePortalContainer } from './portal-container.js';
 
 /*//////////////////////////////////////////////////
 CONFIG
@@ -141,6 +142,7 @@ const SelectScrollDownButton = React.forwardRef<React.ElementRef<typeof SelectPr
  */
 const SelectContent = React.forwardRef<React.ElementRef<typeof SelectPrimitive.Content>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content> & { portalled?: boolean }>(
 	({ className, children, portalled = true, position = 'popper', ...props }, ref): React.JSX.Element => {
+		const portalContainer = usePortalContainer();
 		const content = (
 			<SelectPrimitive.Content
 				ref={ref}
@@ -163,7 +165,7 @@ const SelectContent = React.forwardRef<React.ElementRef<typeof SelectPrimitive.C
 				<SelectScrollDownButton />
 			</SelectPrimitive.Content>
 		);
-		return portalled ? <SelectPrimitive.Portal>{content}</SelectPrimitive.Portal> : content;
+		return portalled ? <SelectPrimitive.Portal container={portalContainer}>{content}</SelectPrimitive.Portal> : content;
 	},
 );
 

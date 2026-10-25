@@ -8,7 +8,7 @@ IMPORTS
 //////////////////////////////////////////////////*/
 
 // API
-import { cn } from './cn.js';
+import { cn } from '../cn.js';
 
 // COMPONENTS
 import { Loader2Icon as LoadIcon } from 'lucide-react';

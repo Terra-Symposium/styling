@@ -16,6 +16,19 @@ import Color from 'colorjs.io';
 // TYPES
 import type { ArrayOf12, ColorGenOpts, ColorScales } from './types.js';
 
+/**
+ * Returns an explicit hue when supplied, or a stable hue derived from a label.
+ * Markdown filenames and display separators are normalized the same way as
+ * Terra Docs tree labels before hashing, so every host gets the same palette.
+ */
+export function getHue(title: string, hue?: number): number {
+	if (typeof hue === 'number') return hue;
+	const normalizedTitle = title.replace(/\.pdf$/i, '').replace(/\.(?:md|mdx)$/i, '').replace(/^_+/, '').replace(/[-_]+/g, ' ').toLowerCase();
+	let result = 0;
+	for (const char of normalizedTitle) result = (result * 31 + char.charCodeAt(0)) | 0;
+	return result % 300;
+}
+
 /*//////////////////////////////////////////////////
 FUNCTIONS
 //////////////////////////////////////////////////*/

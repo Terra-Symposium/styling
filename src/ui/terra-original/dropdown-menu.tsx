@@ -8,7 +8,7 @@ IMPORTS
 //////////////////////////////////////////////////*/
 
 // API
-import { cn } from './cn.js';
+import { cn } from '../cn.js';
 import { MENU_ITEM, MENU_ITEM_INDICATOR, menuItemVariants, OVERLAY_MOTION_VARIANTS, OVERLAY_SURFACE_VARIANTS, RADIX_SIDE_POSITION_VARIANTS } from './variants.js';
 
 // COMPONENTS
@@ -18,6 +18,7 @@ import { Checkmark as CheckIcon, ChevronRight as SubmenuIcon, CircleSolid as Rad
 
 // TYPES
 import type { VariantProps } from 'class-variance-authority';
+import { usePortalContainer } from './portal-container.js';
 
 /*//////////////////////////////////////////////////
 COMPONENTS
@@ -26,7 +27,11 @@ COMPONENTS
 const DropdownMenu = DropdownMenuPrimitive.Root;
 const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 const DropdownMenuGroup = DropdownMenuPrimitive.Group;
-const DropdownMenuPortal = Object.assign(DropdownMenuPrimitive.Portal, { displayName: DropdownMenuPrimitive.Portal.displayName });
+const DropdownMenuPortal = ({ container, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Portal>): React.JSX.Element => {
+	const portalContainer = usePortalContainer();
+	return <DropdownMenuPrimitive.Portal container={container ?? portalContainer} {...props} />;
+};
+DropdownMenuPortal.displayName = DropdownMenuPrimitive.Portal.displayName;
 const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 const DropdownMenuRadioGroup = Object.assign(DropdownMenuPrimitive.RadioGroup, { displayName: DropdownMenuPrimitive.RadioGroup.displayName });
 
@@ -66,7 +71,7 @@ const DropdownMenuSubContent = React.forwardRef<React.ElementRef<typeof Dropdown
  */
 const DropdownMenuContent = React.forwardRef<React.ElementRef<typeof DropdownMenuPrimitive.Content>, React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>>(
 	({ className, collisionPadding = 8, sideOffset = 4, ...props }, ref): React.JSX.Element => (
-		<DropdownMenuPrimitive.Portal>
+		<DropdownMenuPortal>
 			<DropdownMenuPrimitive.Content
 				ref={ref}
 				sideOffset={sideOffset}
@@ -78,7 +83,7 @@ const DropdownMenuContent = React.forwardRef<React.ElementRef<typeof DropdownMen
 				)}
 				{...props}
 			/>
-		</DropdownMenuPrimitive.Portal>
+		</DropdownMenuPortal>
 	),
 );
 

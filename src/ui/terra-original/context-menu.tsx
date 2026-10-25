@@ -8,7 +8,7 @@ IMPORTS
 //////////////////////////////////////////////////*/
 
 // API
-import { cn } from './cn.js';
+import { cn } from '../cn.js';
 import { MENU_ITEM, MENU_ITEM_INDICATOR, menuItemVariants, OVERLAY_MOTION_VARIANTS, OVERLAY_SURFACE_VARIANTS, RADIX_SIDE_POSITION_VARIANTS } from './variants.js';
 
 // COMPONENTS
@@ -18,6 +18,7 @@ import { Checkmark as CheckIcon, ChevronRight as SubmenuIcon, CircleSolid as Rad
 
 // TYPES
 import type { VariantProps } from 'class-variance-authority';
+import { usePortalContainer } from './portal-container.js';
 
 /*//////////////////////////////////////////////////
 COMPONENTS
@@ -26,7 +27,11 @@ COMPONENTS
 const ContextMenu = ContextMenuPrimitive.Root;
 const ContextMenuTrigger = ContextMenuPrimitive.Trigger;
 const ContextMenuGroup = Object.assign(ContextMenuPrimitive.Group, { displayName: ContextMenuPrimitive.Group.displayName });
-const ContextMenuPortal = Object.assign(ContextMenuPrimitive.Portal, { displayName: ContextMenuPrimitive.Portal.displayName });
+const ContextMenuPortal = ({ container, ...props }: React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Portal>): React.JSX.Element => {
+	const portalContainer = usePortalContainer();
+	return <ContextMenuPrimitive.Portal container={container ?? portalContainer} {...props} />;
+};
+ContextMenuPortal.displayName = ContextMenuPrimitive.Portal.displayName;
 const ContextMenuSub = ContextMenuPrimitive.Sub;
 const ContextMenuRadioGroup = Object.assign(ContextMenuPrimitive.RadioGroup, { displayName: ContextMenuPrimitive.RadioGroup.displayName });
 
@@ -69,7 +74,7 @@ const ContextMenuSubContent = React.forwardRef<React.ElementRef<typeof ContextMe
  */
 const ContextMenuContent = React.forwardRef<React.ElementRef<typeof ContextMenuPrimitive.Content>, React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Content>>(
 	({ className, collisionPadding = 8, ...props }, ref): React.JSX.Element => (
-		<ContextMenuPrimitive.Portal>
+		<ContextMenuPortal>
 			<ContextMenuPrimitive.Content
 				ref={ref}
 				collisionPadding={collisionPadding}
@@ -80,7 +85,7 @@ const ContextMenuContent = React.forwardRef<React.ElementRef<typeof ContextMenuP
 				)}
 				{...props}
 			/>
-		</ContextMenuPrimitive.Portal>
+		</ContextMenuPortal>
 	),
 );
 

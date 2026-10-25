@@ -11,7 +11,7 @@ IMPORTS
 //////////////////////////////////////////////////*/
 
 // API
-import { cn } from './cn.js';
+import { cn } from '../cn.js';
 import { cva } from 'class-variance-authority';
 
 // TYPES

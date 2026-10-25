@@ -9,7 +9,7 @@ IMPORTS
 
 // API
 
-import { cn } from './cn.js';
+import { cn } from '../cn.js';
 import { cva } from 'class-variance-authority';
 import { OVERLAY_MOTION_VARIANTS, OVERLAY_SURFACE_VARIANTS, RADIX_SIDE_POSITION_VARIANTS, TEXT_VARIANTS } from './variants.js';
 
@@ -24,6 +24,7 @@ import * as React from 'react';
 // TYPES
 
 import type { VariantProps } from 'class-variance-authority';
+import { usePortalContainer } from './portal-container.js';
 
 /*//////////////////////////////////////////////////
 COMPONENTS
@@ -60,8 +61,9 @@ const tooltipVariants = cva(
 );
 
 const TooltipContent = React.forwardRef<React.ElementRef<typeof TooltipPrimitive.Content>, React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content> & VariantProps<typeof tooltipVariants>>(
-	({ size, className, sideOffset = -8, collisionPadding = 8, children, ...props }, ref): React.JSX.Element => (
-		<TooltipPrimitive.Portal>
+	({ size, className, sideOffset = -8, collisionPadding = 8, children, ...props }, ref): React.JSX.Element => {
+		const portalContainer = usePortalContainer();
+		return <TooltipPrimitive.Portal container={portalContainer}>
 			<TooltipPrimitive.Content
 				ref={ref}
 				sideOffset={sideOffset} // Compensate for arrow offset
@@ -74,8 +76,8 @@ const TooltipContent = React.forwardRef<React.ElementRef<typeof TooltipPrimitive
 					<Arrow />
 				</TooltipPrimitive.Arrow>
 			</TooltipPrimitive.Content>
-		</TooltipPrimitive.Portal>
-	),
+		</TooltipPrimitive.Portal>;
+	},
 );
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
