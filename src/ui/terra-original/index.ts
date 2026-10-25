@@ -23,6 +23,7 @@ export * from './message-scroller.js';
 export * from './pagination.js';
 export * from './password-input.js';
 export * from './popover.js';
+export * from './portal-container.js';
 export * from './progress.js';
 export * from './radio-group.js';
 export * from './resizable.js';

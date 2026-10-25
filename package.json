@@ -1,6 +1,6 @@
 {
   "name": "@terra-symposium/styling",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Shared Terra UI and hue theming",
   "license": "Apache-2.0",
   "type": "module",
@@ -30,8 +30,8 @@
   "scripts": {
     "build": "rm -rf dist && tsc && mkdir -p dist && cp src/ui/tokens.css dist/tokens.css && mkdir -p dist/fonts && cp src/fonts/*.woff2 dist/fonts/ && cp src/fonts/README.md dist/fonts/README.md && cp src/fonts/licenses/OFL-1.1.txt dist/fonts/OFL-1.1.txt && tailwindcss -c tailwind.ui.config.mjs -i src/ui/source.css -o dist/ui.css --minify",
     "typecheck": "tsc --noEmit",
-    "docs:build": "cd docs && ../node_modules/.bin/astro build",
-    "docs:dev": "cd docs && ../node_modules/.bin/astro dev",
+    "docs:build": "pnpm build && cd docs && ../node_modules/.bin/astro build",
+    "docs:dev": "pnpm build && cd docs && ../node_modules/.bin/astro dev",
     "test": "tsx --test test/*.test.ts"
   },
   "dependencies": {
@@ -80,7 +80,7 @@
   "devDependencies": {
     "@astrojs/react": "^7.1.0",
     "@terra-symposium/docs": "file:vendor/terra-symposium-docs-0.1.17.tgz",
-    "@terra-symposium/styling": "file:vendor/terra-symposium-styling-0.1.9.tgz",
+    "@terra-symposium/styling": "file:vendor/terra-symposium-styling-0.1.13.tgz",
     "@types/bezier-easing": "^2.1.2",
     "@types/node": "^24.0.0",
     "@types/react": "^19.3.0",
