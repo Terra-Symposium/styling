@@ -149,6 +149,36 @@ describe('color utilities', () => {
 			assert.deepStrictEqual(dispatchedEvent.detail, { hue: 180 });
 		});
 
+		it('applies a hue to a scoped workspace without changing the document theme', () => {
+			class MockElement {
+				style = { cssText: '' };
+				classList = { contains: () => false };
+				closest = () => null;
+				querySelectorAll = () => [];
+			}
+
+			const docElement = new MockElement();
+			const bodyElement = new MockElement();
+			const workspace = new MockElement();
+			(globalThis as any).HTMLElement = MockElement;
+			(globalThis as any).CustomEvent = class MockCustomEvent {
+				constructor(_type: string, _opts: any) {}
+			};
+			(globalThis as any).document = {
+				documentElement: docElement,
+				body: bodyElement,
+				querySelectorAll: () => [],
+				dispatchEvent: () => true,
+			};
+
+			applyHue(145, workspace as any);
+
+			assert.ok(workspace.style.cssText.includes('--hue: 145'));
+			assert.ok(workspace.style.cssText.includes('--secondary-3: 241 240 248'));
+			assert.strictEqual(docElement.style.cssText, '');
+			assert.strictEqual(bodyElement.style.cssText, '');
+		});
+
 		it('applies null hue palette with --hue: 0', () => {
 			class MockElement {
 				style = { cssText: '' };

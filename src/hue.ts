@@ -142,25 +142,29 @@ export function invert(hue: number | null): number | null {
  *
  * @return `true` when an explicit dark theme is active or the browser prefers dark mode; otherwise `false`.
  */
-export function isDarkMode(): boolean {
+export function isDarkMode(scope?: HTMLElement): boolean {
 	if (typeof document === 'undefined') return false;
+	const scopedTheme = scope?.closest('.dark, .light');
+	if (scopedTheme?.classList.contains('dark')) return true;
+	if (scopedTheme?.classList.contains('light')) return false;
 	if (document.documentElement.classList.contains('dark') || document.body?.classList.contains('dark')) return true;
 	if (document.documentElement.classList.contains('light') || document.body?.classList.contains('light')) return false;
 	return typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
 /**
- * Applies a hue palette to the current document and notifies live consumers.
+ * Applies a hue palette to the current document or a scoped element and notifies live consumers.
  *
  * @param hue - Hue value in degrees, or null for the grayscale palette.
+ * @param scope - Optional element whose palette should be updated without changing the host document theme.
  *
  * @return Resolves after the primary, secondary, and grayscale CSS variables are updated and change events are dispatched.
  */
-export function applyHue(hue: number | null): void {
+export function applyHue(hue: number | null, scope?: HTMLElement): void {
 	if (typeof document === 'undefined') return;
 	const [primary, baseGray] = colors(hue);
 	const [secondary, gray] = hue === null ? [baseGray, baseGray] : colors(invert(hue));
-	const darkMode = isDarkMode();
+	const darkMode = isDarkMode(scope);
 	const colorVars: Record<string, string> = {
 		...flattenColors('primary', primary, true),
 		...flattenColors('gray', gray, true),
@@ -173,7 +177,11 @@ export function applyHue(hue: number | null): void {
 		colorVars[`--secondary-${step}`] = (darkMode ? secondary.dark : secondary.light)[i]!;
 	}
 	// prettier-ignore
-	new Set<HTMLElement>([document.documentElement, ...(document.body ? [document.body] : []), ...Array.from(document.querySelectorAll<HTMLElement>('[style*="--primaryLight1"]'))]).forEach(e => {
+	const legacyTargets = scope
+		? Array.from(scope.querySelectorAll<HTMLElement>('[style*="--primaryLight1"]'))
+		: Array.from(document.querySelectorAll<HTMLElement>('[style*="--primaryLight1"]'));
+	const targets = scope ? [scope, ...legacyTargets] : [document.documentElement, ...(document.body ? [document.body] : []), ...legacyTargets];
+	new Set<HTMLElement>(targets).forEach(e => {
 		e.style.cssText = `${e.style.cssText.replace(/--(?:hue|(?:primary|gray|secondary)-\d+|(?:primary|gray|secondary)(?:Light|Dark)\d+)\s*:[^;]*;?/g, '')}; --hue: ${hue ?? 0}; ${Object.entries(colorVars).map(([k, v]) => `${k}: ${v};`).join('')}`;
 	});
 	document.dispatchEvent(new CustomEvent('docs:hue-change', { detail: { hue } }));

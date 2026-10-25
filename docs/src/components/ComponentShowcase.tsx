@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
+import { applyHue } from '../../../dist/index.js';
 import {
 	Badge,
 	Button,
@@ -58,7 +59,10 @@ export function ComponentShowcase() {
 	const [enabled, setEnabled] = useState(true);
 	const root = useRef<HTMLDivElement>(null);
 	const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
-	useEffect(() => setPortalContainer(root.current), []);
+	useEffect(() => {
+		setPortalContainer(root.current);
+		if (root.current) applyHue(145, root.current);
+	}, []);
 	return (
 		<div className='terra-docs-workspace styling-demo-root' ref={root}>
 		<PortalContainerProvider container={portalContainer}>
