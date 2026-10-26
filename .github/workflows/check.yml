@@ -23,6 +23,6 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm build
       - run: pnpm docs:build
-      - uses: Terra-Symposium/standards/packages/testing@3392260a7a7a39ffcf9508b7ade2618a5dd9042e
+      - uses: Terra-Symposium/standards-testing@1225bf06532e68d315aa2474001a67eea1924ec5
         with:
           manifest: .terra-tests.json
