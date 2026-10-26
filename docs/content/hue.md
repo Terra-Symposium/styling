@@ -1,5 +1,3 @@
-# Hue and themes
-
 Styling exports `colors`, `invert`, `flattenColors`, `applyHue`, and `isDarkMode` from the Terra hue implementation.
 
 ```ts

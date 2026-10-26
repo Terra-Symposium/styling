@@ -1,5 +1,3 @@
-# Terra Styling
+Reusable Terra UI components and hue-based themes for React applications.
 
-Reusable Terra UI components and hue-based themes for React applications. This site is rendered with the Terra Docs package.
-
-Start with [Installation](./installation/) and [Hue and themes](./hue/).
+Start with [Installation](./installation/), browse the [component reference](./components/), and explore the [hue and theme API](./hue/).

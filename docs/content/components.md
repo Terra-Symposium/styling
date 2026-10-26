@@ -1,5 +1,5 @@
-# Components
+Browse the [interactive component showcase](/styling-docs/component-demo/) to inspect the exported controls, menus, and shadcn sidebar.
 
-The Styling package is extracting the shared shadcn-style components from the Terra website. Component exports will be documented here as each is verified against the website's existing behavior.
+The package preserves Terra's original shadcn primitives and variants. Import them from `@terra-symposium/styling/ui` and load `@terra-symposium/styling/ui.css` once in your application.
 
-Use React 19 and the corresponding Radix primitives for interactive controls. Preserve keyboard and screen-reader behavior when adding a new component.
+The shared exports include buttons, form controls, menus, dialogs, cards, tabs, tooltips, and the responsive `Sidebar` family. Keyboard and pointer interactions are provided by the original Radix-backed components.
