@@ -1699,7 +1699,7 @@ packages:
       tailwindcss: '>=3.0.0 || >=4.0.0 || insiders'
 
   '@terra-symposium/docs@file:vendor/terra-symposium-docs-0.1.19.tgz':
-    resolution: {integrity: sha512-+azHXYQ2qaXGH5TA70t1o2b0jhdhQ1e/1UqQFDY1w8QmM6h/Hyj2AusfyXud2friFx9HFy0IUOWD5SiYckh26w==, tarball: file:vendor/terra-symposium-docs-0.1.19.tgz}
+    resolution: {integrity: sha512-35Lkb1N4uG3T4/JDp94JuIWGSCtqTEbOg2H+KskA9po6jRrLVyB96AC2ypSNJVSH7uMHci9vw8Srl6nQ5RR1wQ==, tarball: file:vendor/terra-symposium-docs-0.1.19.tgz}
     version: 0.1.19
     engines: {node: '>=24.12.0'}
     peerDependencies:

@@ -13,3 +13,7 @@ pnpm docs:build
 ```
 
 The hosted guide is built with `@terra-symposium/docs` and mounted by the portfolio site at `/styling-docs/`. Until the Docs package is on the public registry, this repository includes a reviewed package tarball under `vendor/` for a reproducible build.
+
+## Agent skills
+
+UI design, styling, responsive review, and variant workflows live in [`.agents/skills/ui/`](.agents/skills/ui/SKILL.md).
