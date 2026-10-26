@@ -18,7 +18,6 @@ import { Checkmark as CheckIcon, ChevronRight as SubmenuIcon, CircleSolid as Rad
 
 // TYPES
 import type { VariantProps } from 'class-variance-authority';
-import { usePortalContainer } from './portal-container.js';
 
 /*//////////////////////////////////////////////////
 COMPONENTS
@@ -27,11 +26,7 @@ COMPONENTS
 const ContextMenu = ContextMenuPrimitive.Root;
 const ContextMenuTrigger = ContextMenuPrimitive.Trigger;
 const ContextMenuGroup = Object.assign(ContextMenuPrimitive.Group, { displayName: ContextMenuPrimitive.Group.displayName });
-const ContextMenuPortal = ({ container, ...props }: React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Portal>): React.JSX.Element => {
-	const portalContainer = usePortalContainer();
-	return <ContextMenuPrimitive.Portal container={container ?? portalContainer} {...props} />;
-};
-ContextMenuPortal.displayName = ContextMenuPrimitive.Portal.displayName;
+const ContextMenuPortal = Object.assign(ContextMenuPrimitive.Portal, { displayName: ContextMenuPrimitive.Portal.displayName });
 const ContextMenuSub = ContextMenuPrimitive.Sub;
 const ContextMenuRadioGroup = Object.assign(ContextMenuPrimitive.RadioGroup, { displayName: ContextMenuPrimitive.RadioGroup.displayName });
 
@@ -74,7 +69,7 @@ const ContextMenuSubContent = React.forwardRef<React.ElementRef<typeof ContextMe
  */
 const ContextMenuContent = React.forwardRef<React.ElementRef<typeof ContextMenuPrimitive.Content>, React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Content>>(
 	({ className, collisionPadding = 8, ...props }, ref): React.JSX.Element => (
-		<ContextMenuPortal>
+		<ContextMenuPrimitive.Portal>
 			<ContextMenuPrimitive.Content
 				ref={ref}
 				collisionPadding={collisionPadding}
@@ -85,7 +80,7 @@ const ContextMenuContent = React.forwardRef<React.ElementRef<typeof ContextMenuP
 				)}
 				{...props}
 			/>
-		</ContextMenuPortal>
+		</ContextMenuPrimitive.Portal>
 	),
 );
 

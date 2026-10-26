@@ -15,7 +15,6 @@ import { cva } from 'class-variance-authority';
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { CloseLarge as CloseIcon } from '@carbon/icons-react';
-import { usePortalContainer } from './portal-container.js';
 
 // DATA
 import { SURFACE_VARIANTS } from './variants.js';
@@ -60,9 +59,8 @@ const SheetContent = React.forwardRef<
 	import('react').ComponentPropsWithoutRef<typeof import('@radix-ui/react-dialog').Content> & {
 		side?: 'top' | 'bottom' | 'left' | 'right';
 	}
->(({ side = 'right', className, children, ...props }, ref): React.JSX.Element => {
-	const portalContainer = usePortalContainer();
-	return <SheetPrimitive.Portal container={portalContainer}>
+>(({ side = 'right', className, children, ...props }, ref): React.JSX.Element => (
+	<SheetPrimitive.Portal>
 		<SheetOverlay />
 		<SheetPrimitive.Content
 			ref={ref}
@@ -88,8 +86,8 @@ const SheetContent = React.forwardRef<
 				<span className='sr-only'>Close</span>
 			</SheetPrimitive.Close>
 		</SheetPrimitive.Content>
-	</SheetPrimitive.Portal>;
-});
+	</SheetPrimitive.Portal>
+));
 /**
  * Header region for sheet content, typically containing title and description.
  *

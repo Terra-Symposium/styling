@@ -20,7 +20,6 @@ import { DISABLED_STATE_VARIANTS, FOCUS_VISIBLE_VARIANTS, OVERLAY_MOTION_VARIANT
 
 // TYPES
 import type { Size } from './types.js';
-import { usePortalContainer } from './portal-container.js';
 
 /*//////////////////////////////////////////////////
 COMPONENTS
@@ -39,10 +38,7 @@ const DialogTrigger = React.forwardRef<React.ElementRef<typeof DialogPrimitive.T
 DialogTrigger.displayName = DialogPrimitive.Trigger.displayName;
 
 // PORTAL
-const DialogPortal = ({ container, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Portal>): React.JSX.Element => {
-	const portalContainer = usePortalContainer();
-	return <DialogPrimitive.Portal container={container ?? portalContainer} {...props} />;
-};
+const DialogPortal = DialogPrimitive.Portal;
 DialogPortal.displayName = DialogPrimitive.Portal.displayName;
 
 // CLOSE

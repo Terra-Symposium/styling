@@ -14,7 +14,6 @@ import { OVERLAY_MOTION_VARIANTS, OVERLAY_SURFACE_VARIANTS, RADIX_SIDE_POSITION_
 // COMPONENTS
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import * as React from 'react';
-import { usePortalContainer } from './portal-container.js';
 
 /*//////////////////////////////////////////////////
 CONFIG
@@ -29,9 +28,8 @@ PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName;
  * Floating popover content panel.
  */
 const PopoverContent = React.forwardRef<React.ElementRef<typeof PopoverPrimitive.Content>, React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>>(
-	({ className, align = 'center', sideOffset = 4, collisionPadding = 8, ...props }, ref): React.JSX.Element => {
-		const portalContainer = usePortalContainer();
-		return <PopoverPrimitive.Portal container={portalContainer}>
+	({ className, align = 'center', sideOffset = 4, collisionPadding = 8, ...props }, ref): React.JSX.Element => (
+		<PopoverPrimitive.Portal>
 			<PopoverPrimitive.Content
 				ref={ref}
 				align={align}
@@ -52,8 +50,8 @@ const PopoverContent = React.forwardRef<React.ElementRef<typeof PopoverPrimitive
 				)}
 				{...props}
 			/>
-		</PopoverPrimitive.Portal>;
-	},
+		</PopoverPrimitive.Portal>
+	),
 );
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 export { Popover, PopoverContent, PopoverTrigger };

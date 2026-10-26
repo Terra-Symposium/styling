@@ -21,7 +21,6 @@ import { Separator } from './separator.js';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from './sheet.js';
 import { Skeleton } from './skeleton.js';
 import { Slot } from '@radix-ui/react-slot';
-import { PortalContainerProvider } from './portal-container.js';
 
 // TYPES
 import type { SidebarCtxProps } from './types.js';
@@ -68,12 +67,6 @@ const SidebarProvider = React.forwardRef<
 		onOpenChange?: (open: boolean) => void;
 	}
 >(({ defaultOpen = true, open: openProp, onOpenChange: setOpenProp, className, style, children, ...props }, ref): React.JSX.Element => {
-	const rootRef = React.useRef<HTMLDivElement>(null);
-	const [portalContainer, setPortalContainer] = React.useState<HTMLElement | null>(null);
-	React.useImperativeHandle(ref, () => rootRef.current as HTMLDivElement);
-	React.useLayoutEffect(() => {
-		setPortalContainer(rootRef.current);
-	}, []);
 	// STATE
 	// Track the same media query used by the mobile sidebar variant.
 	const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
@@ -151,10 +144,10 @@ const SidebarProvider = React.forwardRef<
 						} as React.CSSProperties
 					}
 					className={cn('group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-primary-2 print:h-auto print:min-h-0', className)}
-					ref={rootRef}
+					ref={ref}
 					{...props}
 				>
-					<PortalContainerProvider container={portalContainer}>{children}</PortalContainerProvider>
+					{children}
 				</div>
 			</TooltipProvider>
 		</SidebarCtx.Provider>
