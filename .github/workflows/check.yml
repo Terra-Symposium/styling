@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: pnpm/action-setup@v4
         with:
           version: 10.30.3
@@ -21,3 +23,6 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm build
       - run: pnpm docs:build
+      - uses: Terra-Symposium/standards/packages/testing@3392260a7a7a39ffcf9508b7ade2618a5dd9042e
+        with:
+          manifest: .terra-tests.json

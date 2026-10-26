@@ -83,8 +83,8 @@
   "devDependencies": {
     "@astrojs/react": "^7.1.0",
     "@changesets/cli": "^3.0.3",
-    "@terra-symposium/docs": "file:vendor/terra-symposium-docs-0.1.21.tgz",
-    "@terra-symposium/styling": "file:vendor/terra-symposium-styling-0.1.15.tgz",
+    "@terra-symposium/docs": "file:vendor/terra-symposium-docs-0.1.23.tgz",
+    "@terra-symposium/styling": "file:vendor/terra-symposium-styling-0.1.16.tgz",
     "@types/bezier-easing": "^2.1.2",
     "@types/node": "^24.0.0",
     "@types/react": "^19.3.0",

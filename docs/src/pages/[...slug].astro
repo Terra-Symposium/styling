@@ -16,6 +16,7 @@ const docs: DocsLocalPage[] = pageCatalog.map(entry => ({
 	path: `content/${entry.file}`,
 	pathname: `${prefix}/${entry.slug}${entry.slug ? '/' : ''}`,
 	title: entry.title,
+	...(entry.description ? { description: entry.description } : {}),
 	markdown: String(contentFiles[`../../content/${entry.file}`] ?? ''),
 }));
 const tree: DocsHostTreeNode[] = [{
