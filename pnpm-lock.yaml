@@ -136,8 +136,8 @@ importers:
         specifier: ^7.1.0
         version: 7.1.1(@types/node@24.19.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.2)(jiti@1.21.7)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(tsx@4.23.15)(yaml@2.9.1)
       '@terra-symposium/docs':
-        specifier: file:vendor/terra-symposium-docs-0.1.17.tgz
-        version: file:vendor/terra-symposium-docs-0.1.17.tgz(@terra-symposium/styling@file:vendor/terra-symposium-styling-0.1.13.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(tsx@4.23.15)(yaml@2.9.1))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: file:vendor/terra-symposium-docs-0.1.19.tgz
+        version: file:vendor/terra-symposium-docs-0.1.19.tgz(@terra-symposium/styling@file:vendor/terra-symposium-styling-0.1.13.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(tsx@4.23.15)(yaml@2.9.1))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@terra-symposium/styling':
         specifier: file:vendor/terra-symposium-styling-0.1.13.tgz
         version: file:vendor/terra-symposium-styling-0.1.13.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(tsx@4.23.15)(yaml@2.9.1)
@@ -156,6 +156,9 @@ importers:
       astro:
         specifier: ^7.4.2
         version: 7.4.2(@types/node@24.19.2)(esbuild@0.28.2)(jiti@1.21.7)(tsx@4.23.15)(yaml@2.9.1)
+      debug:
+        specifier: 4.4.3
+        version: 4.4.3
       react:
         specifier: ^19.3.1
         version: 19.3.1
@@ -168,6 +171,9 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+      use-sync-external-store:
+        specifier: 1.7.0
+        version: 1.7.0(react@19.3.1)
 
 packages:
 
@@ -1692,9 +1698,9 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || >=4.0.0 || insiders'
 
-  '@terra-symposium/docs@file:vendor/terra-symposium-docs-0.1.17.tgz':
-    resolution: {integrity: sha512-o2cLV/ugNw4XOjuekjCzZkVH4f8dlpX+wrSAXM5dwv032DAxkU/AvT8HB6OMj766xJsIO8o3KLg+OHizBEVEgQ==, tarball: file:vendor/terra-symposium-docs-0.1.17.tgz}
-    version: 0.1.17
+  '@terra-symposium/docs@file:vendor/terra-symposium-docs-0.1.19.tgz':
+    resolution: {integrity: sha512-+azHXYQ2qaXGH5TA70t1o2b0jhdhQ1e/1UqQFDY1w8QmM6h/Hyj2AusfyXud2friFx9HFy0IUOWD5SiYckh26w==, tarball: file:vendor/terra-symposium-docs-0.1.19.tgz}
+    version: 0.1.19
     engines: {node: '>=24.12.0'}
     peerDependencies:
       '@terra-symposium/styling': ^0.1.6
@@ -1702,7 +1708,7 @@ packages:
       react-dom: ^19.0.0
 
   '@terra-symposium/styling@file:vendor/terra-symposium-styling-0.1.13.tgz':
-    resolution: {integrity: sha512-VyDS/p1YtSd52E+ghhRy+B7GEagMRxMslaRJjhAugrYVcpi58DrObmtvi0mNHV1fbwNuP6TZZ3bRGFcRbXyelA==, tarball: file:vendor/terra-symposium-styling-0.1.13.tgz}
+    resolution: {integrity: sha512-/fsLUykuMs68gM1NujtH0yYniCNhyH9t1scHzIT3GjLLBrTWIl7F7Nq1WRM4mmYPgOdfY8sE8UOAMXQv2dZ6HQ==, tarball: file:vendor/terra-symposium-styling-0.1.13.tgz}
     version: 0.1.13
     peerDependencies:
       react: ^19.0.0
@@ -4788,7 +4794,7 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 3.4.19(tsx@4.23.15)(yaml@2.9.1)
 
-  '@terra-symposium/docs@file:vendor/terra-symposium-docs-0.1.17.tgz(@terra-symposium/styling@file:vendor/terra-symposium-styling-0.1.13.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(tsx@4.23.15)(yaml@2.9.1))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@terra-symposium/docs@file:vendor/terra-symposium-docs-0.1.19.tgz(@terra-symposium/styling@file:vendor/terra-symposium-styling-0.1.13.tgz(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(tsx@4.23.15)(yaml@2.9.1))(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@carbon/icons-react': 11.90.0(react@19.3.1)
       '@codemirror/commands': 6.11.1

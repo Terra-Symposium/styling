@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
-import { applyHue } from '../../../dist/index.js';
+import { applyHue } from '../../../dist/lib/index.js';
 import {
 	Badge,
 	Button,
@@ -43,7 +43,7 @@ import {
 	TabsContent,
 	TabsList,
 	TabsTrigger,
-} from '../../../dist/ui/terra-original/index.js';
+} from '../../../dist/components/ui/index.js';
 
 function Example({ title, children }: { title: string; children: ReactNode }) {
 	return (

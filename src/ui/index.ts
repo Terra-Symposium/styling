@@ -1,3 +1,3 @@
-export { cn, transformChildrenToString } from './cn.js';
-export { DocsToolbarFrame } from './docs-toolbar.js';
-export * from './terra-original/index.js';
+export { cn, transformChildrenToString } from '../lib/cn.js';
+export { DocsToolbarFrame } from '../components/docs-toolbar.js';
+export * from '../components/ui/index.js';

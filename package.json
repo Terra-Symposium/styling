@@ -9,30 +9,30 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./dist/lib/index.d.ts",
+      "import": "./dist/lib/index.js"
     },
     "./ui": {
       "types": "./dist/ui/index.d.ts",
       "import": "./dist/ui/index.js"
     },
     "./ui/terra-original": {
-      "types": "./dist/ui/terra-original/index.d.ts",
-      "import": "./dist/ui/terra-original/index.js"
+      "types": "./dist/components/ui/index.d.ts",
+      "import": "./dist/components/ui/index.js"
     },
     "./tailwind-preset": {
-      "types": "./dist/tailwind-preset.d.ts",
-      "import": "./dist/tailwind-preset.js"
+      "types": "./dist/lib/tailwind-preset.d.ts",
+      "import": "./dist/lib/tailwind-preset.js"
     },
     "./ui.css": "./dist/ui.css",
     "./tokens.css": "./dist/tokens.css"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc && mkdir -p dist && cp src/ui/tokens.css dist/tokens.css && mkdir -p dist/fonts && cp src/fonts/*.woff2 dist/fonts/ && cp src/fonts/README.md dist/fonts/README.md && cp src/fonts/licenses/OFL-1.1.txt dist/fonts/OFL-1.1.txt && tailwindcss -c tailwind.ui.config.mjs -i src/ui/source.css -o dist/ui.css --minify",
+    "build": "rm -rf dist && tsc && mkdir -p dist/assets/fonts && cp src/styles/tokens.css dist/tokens.css && cp src/assets/fonts/*.woff2 dist/assets/fonts/ && cp src/assets/fonts/README.md dist/assets/fonts/README.md && cp src/assets/fonts/licenses/OFL-1.1.txt dist/assets/fonts/OFL-1.1.txt && tailwindcss -c tailwind.ui.config.mjs -i src/styles/ui.css -o dist/ui.css --minify",
     "typecheck": "tsc --noEmit",
     "docs:build": "pnpm build && cd docs && ../node_modules/.bin/astro build",
-    "docs:dev": "pnpm build && cd docs && ../node_modules/.bin/astro dev",
-    "test": "tsx --test test/*.test.ts"
+    "docs:dev": "pnpm build && cd docs && ASTRO_BASE_PATH=/ ../node_modules/.bin/astro dev",
+    "test": "tsx --test test/lib/*.test.ts test/components/ui/*.test.ts"
   },
   "dependencies": {
     "@carbon/icons-react": "11.90.0",
@@ -79,17 +79,19 @@
   },
   "devDependencies": {
     "@astrojs/react": "^7.1.0",
-    "@terra-symposium/docs": "file:vendor/terra-symposium-docs-0.1.17.tgz",
+    "@terra-symposium/docs": "file:vendor/terra-symposium-docs-0.1.19.tgz",
     "@terra-symposium/styling": "file:vendor/terra-symposium-styling-0.1.13.tgz",
     "@types/bezier-easing": "^2.1.2",
     "@types/node": "^24.0.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "astro": "^7.4.2",
+    "debug": "4.4.3",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "tsx": "^4.22.4",
     "typescript": "^5.9.3",
-    "tsx": "^4.22.4"
+    "use-sync-external-store": "1.7.0"
   },
   "peerDependencies": {
     "react": "^19.0.0",
