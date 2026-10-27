@@ -24,5 +24,6 @@ jobs:
       - run: pnpm build
       - run: pnpm docs:build
       - uses: Terra-Symposium/standards-testing@1225bf06532e68d315aa2474001a67eea1924ec5
+        if: github.event_name == 'pull_request'
         with:
           manifest: .terra-tests.json
