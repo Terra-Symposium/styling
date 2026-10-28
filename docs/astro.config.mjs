@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import { DOCS_VITE_OPTIMIZE_DEPS } from '@terra-symposium/docs/astro';
 import { fileURLToPath } from 'node:url';
 
 const dist = fileURLToPath(new URL('../dist/', import.meta.url));
@@ -13,17 +14,7 @@ export default defineConfig({
     optimizeDeps: {
       // The Docs tarball lives outside the app source scan. Prebundle its entry
       // and CJS subpath dependencies so island hydration gets ESM interop.
-      include: [
-        '@terra-symposium/docs/local-workspace',
-        '@terra-symposium/docs > @dagrejs/dagre',
-        '@terra-symposium/docs > sanitize-html',
-        'debug',
-        'react/compiler-runtime',
-        'react-dom/server',
-        'use-sync-external-store/shim',
-        'use-sync-external-store/shim/with-selector',
-        'use-sync-external-store/shim/with-selector.js',
-      ],
+      include: [...DOCS_VITE_OPTIMIZE_DEPS],
     },
     resolve: {
       alias: [

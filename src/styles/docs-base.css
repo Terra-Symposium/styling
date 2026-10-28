@@ -1,0 +1,9 @@
+@tailwind base;
+/* Shared document typography is part of Styling's public base cascade. */
+@tailwind components;
+
+@layer base {
+	body {
+		-webkit-font-smoothing: antialiased;
+	}
+}

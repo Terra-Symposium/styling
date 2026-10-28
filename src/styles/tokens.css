@@ -143,6 +143,3 @@
   border: 0; border-radius: 0; background: transparent; box-shadow: none;
 }
 [data-docs-main-toolbar] .terra-docs-workspace-toolbar [role='combobox'] { min-width: 7rem; min-height: 1.5rem; }
-@media (max-width: 700px) {
-  .docs-toolbar-scroll[data-docs-toolbar-frame] { width: 100%; max-width: 100%; margin-left: 0; margin-right: 0; }
-}
