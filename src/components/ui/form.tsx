@@ -33,7 +33,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { FORM_LABEL_VARIANTS } from './variants.js';
 
 // TYPES
-import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form';
+import type { ControllerProps, FieldPath, FieldValues, UseFormReturn } from 'react-hook-form';
 import type { FormFieldCtxVal } from './types.js';
 import type { IdArgs } from './types.js';
 
@@ -47,12 +47,24 @@ const FormItemCtx = React.createContext<IdArgs>({} as IdArgs);
 FormItemCtx.displayName = 'FormItemCtx';
 const Form = FormProvider;
 
+/**
+ * Reads React Hook Form state when a control is nested in a form provider.
+ *
+ * @return The active form context, or `null` when the control is used standalone.
+ */
+function useOptionalFormContext<TFieldValues extends FieldValues = FieldValues>(): UseFormReturn<TFieldValues> | null {
+	return useFormContext<TFieldValues>() as UseFormReturn<TFieldValues> | null;
+}
+
 /*//////////////////////////////////////////////////
 HOOKS
 //////////////////////////////////////////////////*/
 
 /**
- * Use form field.
+ * Reads the current field name, generated accessibility IDs, and validation state.
+ *
+ * @return Metadata and validation state for the field rendered by `FormField`.
+ * @throws Error when called outside a `FormField` context.
  */
 const useFormField = () => {
 	const fieldCtx = React.useContext(FormFieldCtx);
@@ -72,6 +84,7 @@ const useFormField = () => {
  * Form field.
  *
  * @param props - Form control props forwarded to the rendered field.
+ * @return A controller connected to the current form field context.
  */
 const FormField = <TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>({
 	...props
@@ -107,4 +120,4 @@ FormLabel.displayName = 'FormLabel';
 FormControl.displayName = 'FormControl';
 FormDescription.displayName = 'FormDescription';
 FormMessage.displayName = 'FormMessage';
-export { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage };
+export { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, useOptionalFormContext };

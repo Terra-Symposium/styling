@@ -1,6 +1,25 @@
+/**
+ * src/components/docs/toolbar-frame.tsx
+ * Shared sticky toolbar wrapper used across Terra Docs hosts.
+ */
+
+/*//////////////////////////////////////////////////
+IMPORTS
+//////////////////////////////////////////////////*/
+
+// TYPES
 import type { ReactNode } from 'react';
 
-/** The original Terra Docs toolbar frame, shared by all Docs hosts. */
+/*//////////////////////////////////////////////////
+COMPONENTS
+//////////////////////////////////////////////////*/
+
+// DOCS TOOLBAR
+/** Provides the shared sticky frame for toolbars in all Terra Docs hosts.
+ *
+ * @param props Toolbar content to place inside the frame.
+ * @return A sticky, print-hidden toolbar frame.
+ */
 export function DocsToolbarFrame({ children }: { children: ReactNode }) {
   return <div className="docs-toolbar-scroll not-prose pointer-events-auto sticky top-10 isolate z-50 -mx-3 -mt-5 mb-5 w-[calc(100%+1.5rem)] max-w-[calc(100%+1.5rem)] overflow-visible text-primary-12 print:hidden" data-docs-toolbar-frame data-docs-toolbar-scroll>
     <div aria-hidden="true" className="docs-toolbar-backdrop pointer-events-none absolute -inset-x-4 -bottom-12 -top-16 z-0" />

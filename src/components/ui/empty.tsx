@@ -1,13 +1,35 @@
 /**
+ * src/components/ui/empty.tsx
  * The shared empty state used by Terra's editors and document surfaces.
  * Supplying `onUpload` turns the placeholder into a file drop and browse target.
  */
 
-import { useState } from 'react';
-import type { AriaAttributes, ComponentType, JSX, ReactNode } from 'react';
+/*//////////////////////////////////////////////////
+IMPORTS
+//////////////////////////////////////////////////*/
+
+// API
 import { cn } from '../../lib/cn.js';
+
+// COMPONENTS
+import { useState } from 'react';
 import { Spinner } from './spinner.js';
 
+// TYPES
+import type { AriaAttributes, ComponentType, JSX, ReactNode } from 'react';
+
+/*//////////////////////////////////////////////////
+COMPONENTS
+//////////////////////////////////////////////////*/
+
+/**
+ * Empty-state content that can also act as a file picker and drop target.
+ * Without `onUpload`, `variant` selects a static layout. With `onUpload`, the
+ * first selected or dropped file is passed to the callback.
+ *
+ * @param props - Content, layout, upload callback and file-type filter, disabled state, accessible input label, loading message, and class name.
+ * @returns A static empty-state container or an upload label with a hidden file input.
+ */
 export function Empty({
 	children,
 	variant,
@@ -19,6 +41,7 @@ export function Empty({
 	accept,
 	uploadDisabled = false,
 	uploadLabel = 'Choose a file to upload',
+	className,
 }: {
 	children?: ReactNode;
 	variant?: 'compact' | 'padded' | 'panel' | 'fill' | 'grow' | 'preview' | 'action' | 'expanded' | 'growPanel';
@@ -30,6 +53,7 @@ export function Empty({
 	accept?: string;
 	uploadDisabled?: boolean;
 	uploadLabel?: string;
+	className?: string;
 }): JSX.Element {
 	const [isDragging, setIsDragging] = useState(false);
 	const classes = cn(
@@ -51,6 +75,7 @@ export function Empty({
 			'min-h-40 cursor-pointer flex-col items-center gap-5 rounded-xl border border-dashed border-primary-6 bg-primary-2/40 px-6 py-8 text-left transition-colors focus-within:outline-none focus-within:ring-2 focus-within:ring-primary-8 hover:border-primary-8 hover:bg-primary-3 sm:flex-row sm:items-start sm:px-8',
 		uploadDisabled && 'cursor-wait opacity-75',
 		isDragging && !uploadDisabled && 'border-primary-9 bg-primary-3',
+		className,
 	);
 	const content = (
 		<>
@@ -102,5 +127,19 @@ export function Empty({
 			/>
 			{content}
 		</label>
+	);
+}
+
+/**
+ * Panel-style empty state for tables, directories, and other data surfaces.
+ *
+ * @param props - Panel title, supporting text, optional action, and class name.
+ * @returns A bordered empty-state panel with the supplied content.
+ */
+export function EmptyState({ title, description, action, className }: { title: ReactNode; description: ReactNode; action?: ReactNode; className?: string }): JSX.Element {
+	return (
+		<Empty variant='panel' title={title} description={description} className={cn('min-h-32 items-center border border-dashed border-gray-6 bg-gray-1 p-6 text-center text-gray-12', className)}>
+			{action}
+		</Empty>
 	);
 }

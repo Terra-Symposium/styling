@@ -27,7 +27,7 @@ import {
 } from "./variants.js";
 
 // TYPES
-import type { SelectSize } from "./types.js";
+import type { FormControlVariant, SelectSize } from "./types.js";
 
 /*//////////////////////////////////////////////////
 CONFIG
@@ -89,7 +89,7 @@ const SelectTrigger = React.forwardRef<
     hideChevron?: boolean;
     size?: SelectSize;
     width?: "fit" | "full";
-    variant?: "default" | "ghost";
+    variant?: FormControlVariant | "default" | "ghost";
   }
 >(
   (
@@ -107,17 +107,19 @@ const SelectTrigger = React.forwardRef<
     const resolvedSize = [size, React.useContext(SelectSizeCtx)][
       Number(size === "default")
     ];
+    const formVariant = variant === "default" ? "primary" : variant === "ghost" ? "primary-ghost" : variant;
+    const ghostVariant = variant === "ghost" || variant.endsWith("-ghost");
     return (
       <SelectPrimitive.Trigger
         ref={ref}
         className={cn(
           "items-center justify-between text-nowrap ring-offset-transparent data-[placeholder]:text-primary-11 [&>span]:line-clamp-1",
           FORM_CONTROL_VARIANTS({
-            variant: variant === "ghost" ? "primary-ghost" : "primary",
+            variant: formVariant,
             size: resolvedSize === "default" ? "md" : resolvedSize,
           }),
           width === "fit" ? "w-fit" : "w-full",
-          variant === "ghost" && "enabled:hover:bg-primary-3",
+          ghostVariant && "enabled:hover:bg-primary-3",
           className,
         )}
         {...props}

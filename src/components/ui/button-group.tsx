@@ -17,6 +17,11 @@ import * as React from 'react';
 // TYPES
 import type { VariantProps } from 'class-variance-authority';
 
+/*//////////////////////////////////////////////////
+CONFIG
+//////////////////////////////////////////////////*/
+
+// ORIENTATION-AWARE LAYOUT VARIANTS
 const BUTTON_GROUP_VARIANTS = cva(
 	"flex w-fit items-stretch has-[>[data-slot=button-group]]:gap-2 [&>*]:focus-visible:relative [&>*]:focus-visible:z-10 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
 	{
@@ -42,7 +47,7 @@ COMPONENTS
  * - Sets appropriate ARIA roles for grouped controls.
  * - Accepts an `orientation` variant to switch between horizontal and vertical layouts.
  *
- * @param props - Props object containing the inputs required by button group.
+ * @param props - Child buttons and div attributes; `orientation` controls their layout and `className` extends the group styles.
  *
  * @return A grouped button container with orientation-aware styling and ARIA metadata.
  */

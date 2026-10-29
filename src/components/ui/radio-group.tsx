@@ -9,11 +9,13 @@ IMPORTS
 
 // API
 import { cn } from '../../lib/cn.js';
+import { useOptionalFormContext } from './form.js';
 import { INTERACTIVE_CONTROL_VARIANTS, SURFACE_VARIANTS } from './variants.js';
 
 // COMPONENTS
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import * as React from 'react';
+import type { FieldValues } from 'react-hook-form';
 
 // TYPES
 import type { UiSize } from './types.js';
@@ -54,9 +56,40 @@ COMPONENTS
  * @param className - Optional class name applied to the group container.
  * @param props - Additional props forwarded to RadioGroupPrimitive.Root.
  */
-const RadioGroup = React.forwardRef<React.ElementRef<typeof RadioGroupPrimitive.Root>, React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>>(
-	({ className, ...props }, ref): React.JSX.Element => <RadioGroupPrimitive.Root className={cn('grid gap-2', className)} {...props} ref={ref} />,
-);
+const RadioGroup = React.forwardRef<
+	React.ElementRef<typeof RadioGroupPrimitive.Root>,
+	React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> & {
+		name?: string;
+	}
+>(({ className, name, value, defaultValue, onValueChange, ...props }, ref): React.JSX.Element => {
+	const form = useOptionalFormContext<FieldValues>();
+	const formValue = form && name ? form.watch(name) : undefined;
+	React.useEffect(() => {
+		const initialValue = value ?? defaultValue;
+		if (!form || !name || initialValue === undefined || form.getValues(name) !== undefined) return;
+		form.setValue(name, initialValue as never, { shouldDirty: false });
+	}, [form, name, value, defaultValue]);
+	return (
+		<RadioGroupPrimitive.Root
+			ref={ref}
+			data-slot='radio-group'
+			name={name}
+			value={typeof formValue === 'string' ? formValue : (value ?? defaultValue)}
+			defaultValue={form && name ? undefined : defaultValue}
+			onValueChange={(next) => {
+				if (form && name)
+					form.setValue(name, next as never, {
+						shouldDirty: true,
+						shouldTouch: true,
+						shouldValidate: true,
+					});
+				onValueChange?.(next);
+			}}
+			className={cn('grid gap-2', className)}
+			{...props}
+		/>
+	);
+});
 
 /**
  * RadioGroup item primitive control.
@@ -65,28 +98,32 @@ const RadioGroup = React.forwardRef<React.ElementRef<typeof RadioGroupPrimitive.
  * @param variant - Optional color scheme variant ('primary' or 'secondary').
  * @param props - Additional props forwarded to RadioGroupPrimitive.Item.
  */
-const RadioGroupItem = React.forwardRef<React.ElementRef<typeof RadioGroupPrimitive.Item>, React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & { variant?: 'primary' | 'secondary' }>(
-	({ className, variant, ...props }, ref): React.JSX.Element => (
-		<RadioGroupPrimitive.Item
-			ref={ref}
-			className={cn(
-				// general
-				'group flex aspect-square size-4 items-center justify-center rounded-full border transition-shadow focus:outline-none',
-				INTERACTIVE_CONTROL_VARIANTS(),
-				// default coloring
-				'border-primary-7 text-primary-12 ring-offset-primary-1 focus:border-primary-9 focus:ring-primary-9 disabled:bg-primary-4',
-				// secondary colouring
-				variant === 'secondary' && 'border-secondary-7 text-secondary-11 ring-offset-secondary-1 focus:border-secondary-9 focus:ring-secondary-9 disabled:bg-secondary-4',
-				// override
-				className,
-			)}
-			{...props}
-		>
-			{/* Indicator */}
-			<span className='block size-2 rounded-full transition-colors group-data-[state="checked"]:bg-primary-12 group-disabled:group-data-[state="checked"]:bg-primary-8' />
-		</RadioGroupPrimitive.Item>
-	),
-);
+const RadioGroupItem = React.forwardRef<
+	React.ElementRef<typeof RadioGroupPrimitive.Item>,
+	React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & {
+		variant?: 'primary' | 'secondary';
+	}
+>(({ className, variant, ...props }, ref): React.JSX.Element => (
+	<RadioGroupPrimitive.Item
+		ref={ref}
+		data-slot='radio-group-item'
+		className={cn(
+			// general
+			'group flex aspect-square size-4 items-center justify-center rounded-full border transition-shadow focus:outline-none',
+			INTERACTIVE_CONTROL_VARIANTS(),
+			// default coloring
+			'border-primary-7 text-primary-12 ring-offset-primary-1 focus:border-primary-9 focus:ring-primary-9 disabled:bg-primary-4',
+			// secondary colouring
+			variant === 'secondary' && 'border-secondary-7 text-secondary-11 ring-offset-secondary-1 focus:border-secondary-9 focus:ring-secondary-9 disabled:bg-secondary-4',
+			// override
+			className,
+		)}
+		{...props}
+	>
+		{/* Indicator */}
+		<span data-slot='radio-group-indicator' className='block size-2 rounded-full transition-colors group-data-[state="checked"]:bg-primary-12 group-disabled:group-data-[state="checked"]:bg-primary-8' />
+	</RadioGroupPrimitive.Item>
+));
 
 /**
  * RadioGroup card item component for selectable card UI.
@@ -99,11 +136,15 @@ const RadioGroupItem = React.forwardRef<React.ElementRef<typeof RadioGroupPrimit
  */
 const RadioGroupCard = React.forwardRef<
 	React.ElementRef<typeof RadioGroupPrimitive.Item>,
-	React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & { variant?: 'correct' | 'ghost' | 'incorrect' | 'primary' | 'secondary'; size?: UiSize }
+	React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & {
+		variant?: 'correct' | 'ghost' | 'incorrect' | 'primary' | 'secondary';
+		size?: UiSize;
+	}
 >(({ className, variant = 'primary', size = 'md', children, ...props }, ref): React.JSX.Element => (
-	<span className='contents'>
+	<span className="contents">
 		<RadioGroupPrimitive.Item
 			ref={ref}
+			data-slot='radio-group-item'
 			className={cn(
 				// general
 				'flex w-full flex-col items-start space-y-1 text-balance rounded-lg border text-left ring-inset data-[state=checked]:ring-1',
@@ -129,7 +170,7 @@ const RadioGroupCard = React.forwardRef<
  */
 const RadioGroupIndicator = Object.assign(
 	React.forwardRef<React.ElementRef<typeof RadioGroupPrimitive.Indicator>, React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Indicator>>(({ className, ...props }, ref): React.JSX.Element => (
-		<RadioGroupPrimitive.Indicator ref={ref} className={cn('flex items-center justify-center', className)} {...props} />
+		<RadioGroupPrimitive.Indicator ref={ref} data-slot='radio-group-indicator' className={cn('flex items-center justify-center', className)} {...props} />
 	)),
 	{ displayName: RadioGroupPrimitive.Indicator.displayName },
 );

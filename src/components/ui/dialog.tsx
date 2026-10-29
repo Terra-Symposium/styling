@@ -14,12 +14,14 @@ import { cn } from '../../lib/cn.js';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as React from 'react';
 import { CloseLarge as CloseIcon } from '@carbon/icons-react';
+import { Button } from './button.js';
+import { Hint } from './hint.js';
 
 // DATA
 import { DISABLED_STATE_VARIANTS, FOCUS_VISIBLE_VARIANTS, OVERLAY_MOTION_VARIANTS, SURFACE_VARIANTS } from './variants.js';
 
 // TYPES
-import type { Size } from './types.js';
+import type { Size, SurfaceVariant } from './types.js';
 
 /*//////////////////////////////////////////////////
 COMPONENTS
@@ -71,23 +73,26 @@ const DialogContent = React.forwardRef<
 	React.ElementRef<typeof DialogPrimitive.Content>,
 	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
 		size?: Size;
+		variant?: SurfaceVariant;
 		closeClassName?: string;
 		overlayClassName?: string;
 		bodyClassName?: string;
 		scrollable?: boolean;
 		showClose?: boolean;
+		showCloseButton?: boolean;
 	}
->(({ className, children, size = 'md', closeClassName, overlayClassName, bodyClassName, scrollable = true, showClose = true, ...props }, ref): React.JSX.Element => (
+>(({ className, children, size = 'lg', variant = 'gray-default', closeClassName, overlayClassName, bodyClassName, scrollable = true, showClose = true, showCloseButton, ...props }, ref): React.JSX.Element => (
 	<DialogPortal>
 		<DialogOverlay className={cn('print:hidden', overlayClassName)} />
 		<DialogPrimitive.Content
+			data-slot='dialog-content'
 			ref={ref}
 			className={cn(
 				// positioning
 				'fixed left-1/2 top-1/2 z-[100] flex max-h-[calc(100%-1rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 gap-y-2 space-y-2 !overflow-visible rounded-lg border p-6 shadow-lg print:hidden',
 				OVERLAY_MOTION_VARIANTS(),
 				'duration-150 data-[state=closed]:zoom-out-[0.98] data-[state=open]:zoom-in-[0.98] data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-1/2 data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-1/2',
-				SURFACE_VARIANTS({ variant: 'primary-outline' }),
+				SURFACE_VARIANTS({ variant }),
 				// sizing
 				'w-full',
 				// colouring
@@ -106,7 +111,7 @@ const DialogContent = React.forwardRef<
 			{...props}
 		>
 			<div className='relative flex size-full min-h-0 flex-col'>
-				{showClose && (
+				{(showCloseButton ?? showClose) && (
 					<DialogPrimitive.Close
 						aria-label='Close dialog'
 						className={cn(
@@ -142,8 +147,9 @@ DialogContent.displayName = DialogPrimitive.Content.displayName;
  *
  * @param className - Optional class name applied to the dialog element.
  * @param props - Additional dialog props forwarded to the primitive.
+ * @return A dialog header container, optionally hidden from visual layout.
  */
-const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => <div className={cn('mb-4 flex flex-col text-center sm:text-left', className)} {...props} />;
+const DialogHeader = ({ className, visuallyHidden = false, ...props }: React.HTMLAttributes<HTMLDivElement> & { visuallyHidden?: boolean }): React.JSX.Element => <div data-slot='dialog-header' className={cn('mb-4 flex flex-col text-center sm:text-left', visuallyHidden && 'sr-only', className)} {...props} />;
 DialogHeader.displayName = 'DialogHeader';
 
 // FOOTER
@@ -152,9 +158,13 @@ DialogHeader.displayName = 'DialogHeader';
  *
  * @param className - Optional class name applied to the dialog element.
  * @param props - Additional dialog props forwarded to the primitive.
+ * @return A dialog footer with optional close action and grid layout.
  */
-const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => (
-	<div className={cn('mt-2 flex flex-col-reverse gap-2 bg-primary-1 sm:flex-row sm:justify-end', className)} {...props} />
+const DialogFooter = ({ className, layout = 'default', showCloseButton = false, children, ...props }: React.HTMLAttributes<HTMLDivElement> & { layout?: 'default' | 'grid'; showCloseButton?: boolean }): React.JSX.Element => (
+	<div data-slot='dialog-footer' className={cn('mt-2 flex flex-col-reverse gap-2 rounded-lg border bg-primary-3/50 p-4 sm:flex-row sm:justify-end', layout === 'grid' && 'grid sm:grid-cols-4', className)} {...props}>
+		{children}
+		{showCloseButton && <DialogPrimitive.Close asChild><Button variant='gray-outline'>Close</Button></DialogPrimitive.Close>}
+	</div>
 );
 DialogFooter.displayName = 'DialogFooter';
 
@@ -171,8 +181,11 @@ DialogTitle.displayName = DialogPrimitive.Title.displayName;
 /**
  * Accessible dialog description body text.
  */
-const DialogDescription = React.forwardRef<React.ElementRef<typeof DialogPrimitive.Description>, React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>>(
-	({ className, ...props }, ref): React.JSX.Element => <DialogPrimitive.Description ref={ref} className={cn('text-sm text-primary-10', className)} {...props} />,
+const DialogDescription = React.forwardRef<React.ElementRef<typeof DialogPrimitive.Description>, React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description> & { tooltip?: React.ReactNode }>(
+	({ className, tooltip, children, ...props }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description> & { tooltip?: React.ReactNode }, ref): React.JSX.Element => {
+		const description = <DialogPrimitive.Description data-slot='dialog-description' ref={ref} className={cn('text-sm text-primary-10', className)} {...props}>{children}</DialogPrimitive.Description>;
+		return tooltip ? <Hint content={tooltip} disabledTrigger>{description}</Hint> : description;
+	},
 );
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 

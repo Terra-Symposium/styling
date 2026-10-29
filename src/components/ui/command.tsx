@@ -17,7 +17,6 @@ import { Command as CommandPrimitive } from 'cmdk';
 import { Dialog, DialogContent } from './dialog.js';
 
 // TYPES
-// TYPES
 import type { CommandDialogProps, CommandInputProps } from './types.js';
 
 /*//////////////////////////////////////////////////
@@ -38,6 +37,7 @@ const Command = React.forwardRef<React.ElementRef<typeof CommandPrimitive>, Reac
  * @param children - Command content rendered inside the control.
  * @param size - Command size variant used by the control.
  * @param props - Additional command props forwarded to the primitive.
+ * @return A command palette displayed inside the shared dialog primitive.
  */
 const CommandDialog = ({ className, children, size, ...props }: CommandDialogProps): React.JSX.Element => {
 	return (

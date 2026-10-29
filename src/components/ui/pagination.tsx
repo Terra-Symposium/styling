@@ -24,6 +24,7 @@ COMPONENTS
  *
  * @param className - Optional class name applied to the pagination element.
  * @param props - Additional pagination props forwarded to the primitive.
+ * @return A labeled navigation container for page controls.
  */
 const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>): React.JSX.Element => (
 	<nav role='navigation' aria-label='pagination' className={cn('mx-auto flex w-full justify-center', className)} {...props} />
@@ -58,6 +59,7 @@ const PaginationItem = React.forwardRef<HTMLButtonElement, React.ComponentProps<
  * @param size - Link size variant used by the pagination control.
  * @param onClick - Callback invoked when the link is selected.
  * @param props - Additional link props forwarded to the primitive.
+ * @return A link styled and announced according to its page state.
  */
 const PaginationLink = ({
 	className,
@@ -66,7 +68,7 @@ const PaginationLink = ({
 	size = 'icon',
 	onClick,
 	...props
-}: { isActive?: boolean; disabled?: boolean; size?: React.ComponentProps<typeof Button>['size'] } & React.ComponentProps<'a'>): React.JSX.Element => (
+}: { isActive?: boolean; disabled?: boolean; size?: NonNullable<React.ComponentProps<typeof Button>['size']> } & React.ComponentProps<'a'>): React.JSX.Element => (
 	<ButtonLink
 		aria-current={isActive ? 'page' : undefined}
 		aria-disabled={disabled ? 'true' : undefined}
@@ -90,6 +92,7 @@ const PaginationLink = ({
  *
  * @param className - Optional class name applied to the pagination control.
  * @param props - Additional pagination props forwarded to the primitive.
+ * @return A control that links to the previous page.
  */
 const PaginationPrevious = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>): React.JSX.Element => (
 	<PaginationLink aria-label='Go to previous page' size='default' className={cn('gap-1 pl-2.5 !no-underline', className)} {...props}>
@@ -103,6 +106,7 @@ const PaginationPrevious = ({ className, ...props }: React.ComponentProps<typeof
  *
  * @param className - Optional class name applied to the pagination control.
  * @param props - Additional pagination props forwarded to the primitive.
+ * @return A control that links to the next page.
  */
 const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>): React.JSX.Element => (
 	<PaginationLink aria-label='Go to next page' size='default' className={cn('gap-1 pr-2.5 !no-underline', className)} {...props}>

@@ -15,11 +15,13 @@ import { cva } from 'class-variance-authority';
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { CloseLarge as CloseIcon } from '@carbon/icons-react';
+import { Hint } from './hint.js';
 
 // DATA
 import { SURFACE_VARIANTS } from './variants.js';
 
 // TYPES
+import type { SurfaceVariant } from './types.js';
 
 /*//////////////////////////////////////////////////
 CONFIG
@@ -58,8 +60,9 @@ const SheetContent = React.forwardRef<
 	React.ElementRef<typeof SheetPrimitive.Content>,
 	import('react').ComponentPropsWithoutRef<typeof import('@radix-ui/react-dialog').Content> & {
 		side?: 'top' | 'bottom' | 'left' | 'right';
+		variant?: SurfaceVariant;
 	}
->(({ side = 'right', className, children, ...props }, ref): React.JSX.Element => (
+>(({ side = 'right', variant = 'primary-outline', className, children, ...props }, ref): React.JSX.Element => (
 	<SheetPrimitive.Portal>
 		<SheetOverlay />
 		<SheetPrimitive.Content
@@ -72,7 +75,7 @@ const SheetContent = React.forwardRef<
 					},
 					defaultVariants: { side: 'right' },
 				})({ side }),
-				SURFACE_VARIANTS({ variant: 'primary-outline' }),
+				SURFACE_VARIANTS({ variant }),
 				className,
 			)}
 			{...props}
@@ -129,8 +132,14 @@ const SheetTitle = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Title
  *
  * @returns A styled paragraph el providing additional ctx.
  */
-const SheetDescription = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Description>, React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>>(
-	({ className, ...props }, ref): React.JSX.Element => <SheetPrimitive.Description ref={ref} className={cn('text-sm text-primary-11', className)} {...props} />,
+const SheetDescription = React.forwardRef<
+	React.ElementRef<typeof SheetPrimitive.Description>,
+	React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description> & { tooltip?: React.ReactNode }
+>(
+	({ className, tooltip, children, ...props }, ref): React.JSX.Element => {
+		const description = <SheetPrimitive.Description ref={ref} className={cn('text-sm text-primary-11', className)} {...props}>{children}</SheetPrimitive.Description>;
+		return tooltip ? <Hint content={tooltip} disabledTrigger>{description}</Hint> : description;
+	},
 );
 SheetTrigger.displayName = SheetPrimitive.Trigger.displayName;
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;

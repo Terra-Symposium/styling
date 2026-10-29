@@ -1,5 +1,11 @@
 # @terra-symposium/styling
 
+## 0.1.28
+
+### Patch Changes
+
+- Add data-driven form and table renderers, consolidate Salesphere UI components, and support the shared primary and secondary hue palettes.
+
 ## 0.1.26
 
 ### Patch Changes

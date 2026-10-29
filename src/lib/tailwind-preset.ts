@@ -1,16 +1,6 @@
 /**
- * tailwind.preset.ts
- *
- * @file Tailwind CSS Preset
- *
- * This file defines a reusable Tailwind CSS config preset.
- * It includes a custom theme with color palettes, font families,
- * animations, and other design tokens. It also configures several
- * Tailwind CSS plugins to extend the framework's functionality.
- *
- * This preset is intended to be used in the main `tailwind.config.js`
- * file to ensure a consistent design system across the project.
- *
+ * src/lib/tailwind-preset.ts
+ * Reusable Tailwind preset with shared color, typography, animation, and plugin tokens.
  * @see https://tailwindcss.com/docs/presets
  */
 
@@ -33,9 +23,10 @@ HELPERS
 //////////////////////////////////////////////////*/
 
 /**
- * Applies the apply Opacity Value.
+ * Creates a Tailwind color callback for a CSS variable containing RGB channels.
  *
- * @param variable - The variable to inspect.
+ * @param variable - CSS custom property name that resolves to a space-delimited RGB triplet.
+ * @return A color callback that uses `opacityValue`, falling back to `100` when it is falsy.
  */
 const applyOpacityValue = (variable: string) => {
 	return (prop: Partial<{ opacityVariable: string; opacityValue: number }>) => {

@@ -87,11 +87,11 @@ const DropdownMenuContent = React.forwardRef<React.ElementRef<typeof DropdownMen
  */
 const DropdownMenuItem = React.forwardRef<
 	React.ElementRef<typeof DropdownMenuPrimitive.Item>,
-	React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & VariantProps<typeof menuItemVariants> & { inset?: boolean }
->(({ className, inset, intent, ...props }, ref): React.JSX.Element => (
+	React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & VariantProps<typeof menuItemVariants> & { inset?: boolean; variant?: 'destructive' }
+>(({ className, inset, intent, variant, ...props }, ref): React.JSX.Element => (
 	<DropdownMenuPrimitive.Item
 		ref={ref}
-		className={cn(classes.item, menuItemVariants({ intent }), '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0', inset && 'pl-8', className)}
+		className={cn(classes.item, menuItemVariants({ intent: variant === 'destructive' ? 'destructive' : intent }), '[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0', inset && 'pl-8', className)}
 		{...props}
 	/>
 ));
@@ -145,7 +145,7 @@ const DropdownMenuLabel = React.forwardRef<React.ElementRef<typeof DropdownMenuP
  * Horizontal separator line dividing sections in a dropdown menu.
  */
 const DropdownMenuSeparator = React.forwardRef<React.ElementRef<typeof DropdownMenuPrimitive.Separator>, React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>>(
-	({ className, ...props }, ref): React.JSX.Element => <DropdownMenuPrimitive.Separator ref={ref} className={cn('mx-1.5 my-1 h-px bg-primary-6', className)} {...props} />,
+	({ className, ...props }, ref): React.JSX.Element => <DropdownMenuPrimitive.Separator ref={ref} data-slot='dropdown-menu-separator' className={cn('mx-1.5 my-1 h-px bg-primary-6', className)} {...props} />,
 );
 
 /**

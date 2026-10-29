@@ -20,6 +20,10 @@ import type { ArrayOf12, ColorGenOpts, ColorScales } from './types.js';
  * Returns an explicit hue when supplied, or a stable hue derived from a label.
  * Markdown filenames and display separators are normalized the same way as
  * Terra Docs tree labels before hashing, so every host gets the same palette.
+ *
+ * @param title - Document title or filename used to derive a hue.
+ * @param hue - Optional explicit hue, returned unchanged when supplied as a number.
+ * @return The explicit hue or a deterministic hue derived from the normalized title.
  */
 export function getHue(title: string, hue?: number): number {
 	if (typeof hue === 'number') return hue;
@@ -88,7 +92,8 @@ export function colors(hue: number | null, opts: ColorGenOpts = {}): [ColorScale
 		/**
 		 * Converts a Radix color value to the RGB triplet format used by the theme.
 		 *
-		 * @param value - Radix color value to convert.
+		 * @param val - Radix color string to convert.
+		 * @return Three sRGB channels separated by spaces, rounded to integers and clamped to 0–255.
 		 */
 		const toRgbTriplet = (val: string): string =>
 			new Color(val)
@@ -140,6 +145,7 @@ export function invert(hue: number | null): number | null {
 /**
  * Resolves the active document theme, allowing an explicit class to override the system preference.
  *
+ * @param scope - Optional element used to find the nearest explicit `.dark` or `.light` class.
  * @return `true` when an explicit dark theme is active or the browser prefers dark mode; otherwise `false`.
  */
 export function isDarkMode(scope?: HTMLElement): boolean {
@@ -380,36 +386,48 @@ function genRadixColors({
 
 		/**
 		 * Returns alpha-blended sRGB accents.
+		 *
+		 * @return Twelve sRGB hex colors with alpha, composited over the generated background.
 		 */
 		get asAlpha() {
 			return asHex.map(c => getAlphaColorSrgb(c, bgHex)) as ArrayOf12<string>;
 		},
 		/**
 		 * Returns wide-gamut accent tones in OKLCH form.
+		 *
+		 * @return Twelve CSS OKLCH color strings for the accent scale.
 		 */
 		get asWideGamut() {
 			return asColors.map(toOklchString) as ArrayOf12<string>;
 		},
 		/**
 		 * Returns alpha-blended wide-gamut accents.
+		 *
+		 * @return Twelve Display-P3 color strings with alpha for the accent scale.
 		 */
 		get asAlphaWideGamut() {
 			return asHex.map(c => getAlphaColorP3(c, bgHex)) as ArrayOf12<string>;
 		},
 		/**
 		 * Returns the accent contrast color.
+		 *
+		 * @return The accent's sRGB hex contrast color.
 		 */
 		get accentContrast() {
 			return accentContrastColor.to('srgb').toString({ format: 'hex' });
 		},
 		/**
 		 * Returns a surface tint derived from the accent palette.
+		 *
+		 * @return An alpha-blended sRGB hex tint based on accent step 2.
 		 */
 		get accentSurface() {
 			return appearance === 'light' ? getAlphaColorSrgb(asHex[1], bgHex, 0.8) : getAlphaColorSrgb(asHex[1], bgHex, 0.5);
 		},
 		/**
 		 * Returns a wide-gamut surface tint derived from the accent palette.
+		 *
+		 * @return An alpha-blended Display-P3 tint based on accent step 2.
 		 */
 		get accentSurfaceWideGamut() {
 			const asWideGamut = this.asWideGamut;
@@ -417,30 +435,40 @@ function genRadixColors({
 		},
 		/**
 		 * Returns alpha-blended gray scale swatches.
+		 *
+		 * @return Twelve sRGB hex colors with alpha, composited over the generated background.
 		 */
 		get gsAlpha() {
 			return gsHex.map(c => getAlphaColorSrgb(c, bgHex)) as ArrayOf12<string>;
 		},
 		/**
 		 * Returns wide-gamut gray scale swatches.
+		 *
+		 * @return Twelve CSS OKLCH color strings for the gray scale.
 		 */
 		get gsWideGamut() {
 			return gsColors.map(toOklchString) as ArrayOf12<string>;
 		},
 		/**
 		 * Returns alpha-blended wide-gamut gray scale swatches.
+		 *
+		 * @return Twelve Display-P3 color strings with alpha for the gray scale.
 		 */
 		get gsAlphaWideGamut() {
 			return gsHex.map(c => getAlphaColorP3(c, bgHex)) as ArrayOf12<string>;
 		},
 		/**
 		 * Returns the default gray surface color.
+		 *
+		 * @return The appearance-specific gray surface color as an alpha color string.
 		 */
 		get graySurface() {
 			return appearance === 'light' ? '#ffffffcc' : 'rgba(0, 0, 0, 0.05)';
 		},
 		/**
-		 * Gets step9 colors.
+		 * Returns a wide-gamut gray surface tint.
+		 *
+		 * @return The appearance-specific gray surface as a Display-P3 color string with alpha.
 		 */
 		get graySurfaceWideGamut() {
 			return appearance === 'light' ? 'color(display-p3 1 1 1 / 80%)' : 'color(display-p3 0 0 0 / 5%)';
