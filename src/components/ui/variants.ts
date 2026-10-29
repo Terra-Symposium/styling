@@ -15,7 +15,6 @@ import { cn } from '../../lib/cn.js';
 import { cva } from 'class-variance-authority';
 
 // TYPES
-// TYPES
 import type { FormControlVariant, SurfaceMatrixVariant, UiColor, UiSize, UiType } from './types.js';
 
 /*//////////////////////////////////////////////////

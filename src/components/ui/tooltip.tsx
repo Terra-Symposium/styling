@@ -12,18 +12,14 @@ IMPORTS
 import { cn } from '../../lib/cn.js';
 import { cva } from 'class-variance-authority';
 import { OVERLAY_MOTION_VARIANTS, OVERLAY_SURFACE_VARIANTS, RADIX_SIDE_POSITION_VARIANTS, TEXT_VARIANTS } from './variants.js';
+import type { VariantProps } from 'class-variance-authority';
 
 // TYPES
 import type { UiSize } from './types.js';
 
 // COMPONENTS
-
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import * as React from 'react';
-
-// TYPES
-
-import type { VariantProps } from 'class-variance-authority';
 
 /*//////////////////////////////////////////////////
 COMPONENTS
