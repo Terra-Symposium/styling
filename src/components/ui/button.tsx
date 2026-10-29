@@ -19,6 +19,7 @@ import { Spinner } from './spinner.js';
 import { ACTION_VARIANTS } from './variants.js';
 
 // TYPES
+import type { VariantProps } from 'class-variance-authority';
 import type { UiButtonButtonProps as ButtonProps } from './types.js';
 
 /*//////////////////////////////////////////////////
@@ -48,7 +49,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, va
 /**
  * Anchor element styled to match button variants.
  */
-const ButtonLink = React.forwardRef<HTMLAnchorElement, React.AnchorHTMLAttributes<HTMLAnchorElement> & import('class-variance-authority').VariantProps<typeof ACTION_VARIANTS>>(
+const ButtonLink = React.forwardRef<HTMLAnchorElement, React.AnchorHTMLAttributes<HTMLAnchorElement> & VariantProps<typeof ACTION_VARIANTS>>(
 	({ children, className, variant, size, ...props }, ref): React.JSX.Element => (
 		<a className={cn(ACTION_VARIANTS({ variant, size, className }))} ref={ref} {...props}>
 			{children}

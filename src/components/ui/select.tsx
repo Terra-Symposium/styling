@@ -65,7 +65,6 @@ const SelectValue = SelectPrimitive.Value;
 /**
  * Clickable trigger that opens the select content.
  *
- * @param className - Optional style overrides for the trigger.
  * @param children - Trigger label and value content.
  *
  * @returns A btn-like control that toggles the select menu.
@@ -103,8 +102,6 @@ const SelectTrigger = React.forwardRef<
 /**
  * Scroll control displayed at the top of the select content.
  *
- * @param className - Optional style overrides for the scroll btn.
- *
  * @returns A btn that scrolls the opt list upwards.
  */
 const SelectScrollUpButton = React.forwardRef<React.ElementRef<typeof SelectPrimitive.ScrollUpButton>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>>(
@@ -117,8 +114,6 @@ const SelectScrollUpButton = React.forwardRef<React.ElementRef<typeof SelectPrim
 
 /**
  * Scroll control displayed at the bottom of the select content.
- *
- * @param className - Optional style overrides for the scroll btn.
  *
  * @returns A btn that scrolls the opt list downwards.
  */
@@ -133,7 +128,6 @@ const SelectScrollDownButton = React.forwardRef<React.ElementRef<typeof SelectPr
 /**
  * Overlay panel that renders the select opts.
  *
- * @param className - Optional style overrides for the content surface.
  * @param children - Option groups and items to render.
  * @param position - Positioning strategy for the content (default: 'popper').
  *
@@ -170,8 +164,6 @@ const SelectContent = React.forwardRef<React.ElementRef<typeof SelectPrimitive.C
 /**
  * Text label used to describe a group of select items.
  *
- * @param className - Optional style overrides for the label.
- *
  * @returns A styled label element inside the opt list.
  */
 const SelectLabel = React.forwardRef<React.ElementRef<typeof SelectPrimitive.Label>, React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>>(
@@ -181,7 +173,6 @@ const SelectLabel = React.forwardRef<React.ElementRef<typeof SelectPrimitive.Lab
 /**
  * Single opt within the select menu.
  *
- * @param className - Optional style overrides for the opt row.
  * @param children - Human-readable opt label.
  *
  * @returns A selectable item with active and checked state styling.
@@ -223,8 +214,6 @@ const SelectItem = React.forwardRef<
 
 /**
  * Visual divider used to separate logical groups of opts.
- *
- * @param className - Optional style overrides for the separator.
  *
  * @returns A horizontal rule inside the opt list.
  */

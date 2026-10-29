@@ -22,8 +22,6 @@ COMPONENTS
 /**
  * Renders the pagination component.
  *
- * @param className - Optional class name applied to the pagination element.
- * @param props - Additional pagination props forwarded to the primitive.
  */
 const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>): React.JSX.Element => (
 	<nav role='navigation' aria-label='pagination' className={cn('mx-auto flex w-full justify-center', className)} {...props} />
@@ -32,8 +30,6 @@ const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>): React
 /**
  * Container wrapper for pagination list controls.
  *
- * @param className - Optional class name applied to the pagination content element.
- * @param props - Additional HTML attributes forwarded to the element.
  */
 const PaginationContent = React.forwardRef<HTMLDivElement, React.ComponentProps<'div'>>(({ className, ...props }, ref): React.JSX.Element => (
 	<div ref={ref} className={cn('flex flex-row items-center gap-1 no-underline', className)} {...props} />
@@ -42,8 +38,6 @@ const PaginationContent = React.forwardRef<HTMLDivElement, React.ComponentProps<
 /**
  * Individual item button wrapper inside pagination navigation.
  *
- * @param className - Optional class name applied to the pagination item button.
- * @param props - Additional props forwarded to the Button component.
  */
 const PaginationItem = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(({ className, ...props }, ref): React.JSX.Element => (
 	<Button variant='ghost' ref={ref} className={cn('w-fit px-0 no-underline enabled:hover:bg-primary-3', className)} {...props} />
@@ -52,12 +46,10 @@ const PaginationItem = React.forwardRef<HTMLButtonElement, React.ComponentProps<
 /**
  * Renders the pagination link component.
  *
- * @param className - Optional class name applied to the pagination link.
  * @param isActive - Whether the link represents the current page.
  * @param disabled - Whether the link should reject interaction.
  * @param size - Link size variant used by the pagination control.
  * @param onClick - Callback invoked when the link is selected.
- * @param props - Additional link props forwarded to the primitive.
  */
 const PaginationLink = ({
 	className,
@@ -88,8 +80,6 @@ const PaginationLink = ({
 /**
  * Pagination previous.
  *
- * @param className - Optional class name applied to the pagination control.
- * @param props - Additional pagination props forwarded to the primitive.
  */
 const PaginationPrevious = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>): React.JSX.Element => (
 	<PaginationLink aria-label='Go to previous page' size='default' className={cn('gap-1 pl-2.5 !no-underline', className)} {...props}>
@@ -101,8 +91,6 @@ const PaginationPrevious = ({ className, ...props }: React.ComponentProps<typeof
 /**
  * Pagination next.
  *
- * @param className - Optional class name applied to the pagination control.
- * @param props - Additional pagination props forwarded to the primitive.
  */
 const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>): React.JSX.Element => (
 	<PaginationLink aria-label='Go to next page' size='default' className={cn('gap-1 pr-2.5 !no-underline', className)} {...props}>

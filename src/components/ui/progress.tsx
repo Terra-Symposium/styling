@@ -24,8 +24,6 @@ COMPONENTS
 /**
  * Shadcn-style progress primitive.
  *
- * @param props - Props object containing the inputs required by progress.
- *
  * @return Progress bar whose indicator reflects the supplied numeric value.
  */
 export function Progress({ className, value, ...props }: ComponentProps<typeof ProgressPrimitive.Root> & { value?: number | null }): React.JSX.Element {

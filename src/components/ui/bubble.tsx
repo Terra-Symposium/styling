@@ -46,8 +46,6 @@ COMPONENTS
 /**
  * Renders the bubble component.
  *
- * @param props - Props object containing the inputs required by bubble.
- *
  * @return Styled message bubble aligned according to the supplied props.
  */
 function Bubble({ variant = 'default', align = 'start', className, ...props }: React.ComponentProps<'div'> & VariantProps<typeof BUBBLE_VARIANTS> & { align?: 'start' | 'end' }): React.JSX.Element {
@@ -56,8 +54,6 @@ function Bubble({ variant = 'default', align = 'start', className, ...props }: R
 
 /**
  * Renders the bubble content component.
- *
- * @param props - Props object containing the inputs required by bubble content.
  *
  * @return Bubble content container for message body elements.
  */

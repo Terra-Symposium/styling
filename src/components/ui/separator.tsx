@@ -21,10 +21,8 @@ COMPONENTS
 /**
  * Separator primitive component.
  *
- * @param className - Optional class name applied to the separator element.
  * @param orientation - Visual orientation of the divider ('horizontal' or 'vertical').
  * @param decorative - Whether the separator is decorative or structural for screen readers.
- * @param props - Additional props forwarded to the Radix separator primitive.
  */
 const Separator = React.forwardRef<React.ElementRef<typeof SeparatorPrimitive.Root>, React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>>(
 	({ className, orientation = 'horizontal', decorative = true, ...props }, ref): React.JSX.Element => (

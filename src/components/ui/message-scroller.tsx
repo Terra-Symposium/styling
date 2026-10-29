@@ -21,8 +21,6 @@ COMPONENTS
 /**
  * Renders the message scroller provider component.
  *
- * @param props - Props object containing the inputs required by message scroller provider.
- *
  * @return Provider component for message-scroller context.
  */
 function MessageScrollerProvider(props: React.ComponentProps<typeof MessageScrollerPrimitive.Provider>): React.JSX.Element {
@@ -31,8 +29,6 @@ function MessageScrollerProvider(props: React.ComponentProps<typeof MessageScrol
 
 /**
  * Renders the message scroller component.
- *
- * @param props - Props object containing the inputs required by message scroller.
  *
  * @return Scrollable message-scroller root.
  */
@@ -43,8 +39,6 @@ function MessageScroller({ className, ...props }: React.ComponentProps<typeof Me
 /**
  * Renders the message scroller viewport component.
  *
- * @param props - Props object containing the inputs required by message scroller viewport.
- *
  * @return Scrollable message viewport.
  */
 function MessageScrollerViewport({ className, ...props }: React.ComponentProps<typeof MessageScrollerPrimitive.Viewport>): React.JSX.Element {
@@ -54,8 +48,6 @@ function MessageScrollerViewport({ className, ...props }: React.ComponentProps<t
 /**
  * Renders the message scroller content component.
  *
- * @param props - Props object containing the inputs required by message scroller content.
- *
  * @return Message content container with the supplied classes.
  */
 function MessageScrollerContent({ className, ...props }: React.ComponentProps<typeof MessageScrollerPrimitive.Content>): React.JSX.Element {
@@ -64,8 +56,6 @@ function MessageScrollerContent({ className, ...props }: React.ComponentProps<ty
 
 /**
  * Renders the message scroller item component.
- *
- * @param props - Props object containing the inputs required by message scroller item.
  *
  * @return Message item container with optional scroll anchoring.
  */

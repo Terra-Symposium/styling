@@ -20,8 +20,6 @@ COMPONENTS
 /**
  * Renders the message group component.
  *
- * @param props - Props object containing the inputs required by message group.
- *
  * @return Group container for related messages.
  */
 function MessageGroup({ className, ...props }: React.ComponentProps<'div'>): React.JSX.Element {
@@ -30,8 +28,6 @@ function MessageGroup({ className, ...props }: React.ComponentProps<'div'>): Rea
 
 /**
  * Renders the message component.
- *
- * @param props - Props object containing the inputs required by message.
  *
  * @return Message container aligned according to the supplied mode.
  */
@@ -42,8 +38,6 @@ function Message({ className, align = 'start', ...props }: React.ComponentProps<
 /**
  * Renders the message content component.
  *
- * @param props - Props object containing the inputs required by message content.
- *
  * @return Message content container.
  */
 function MessageContent({ className, ...props }: React.ComponentProps<'div'>): React.JSX.Element {
@@ -52,8 +46,6 @@ function MessageContent({ className, ...props }: React.ComponentProps<'div'>): R
 
 /**
  * Renders the message header component.
- *
- * @param props - Props object containing the inputs required by message header.
  *
  * @return Message header container.
  */

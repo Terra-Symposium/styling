@@ -20,8 +20,6 @@ COMPONENTS
 /**
  * Lightweight loading indicator built on top of the Carbon loading icon.
  *
- * @param props - Props object containing the inputs required by spinner.
- *
  * @return A spinning SVG icon with accessible loading semantics.
  */
 function Spinner({ className, ...props }: React.ComponentProps<'svg'>): React.JSX.Element {

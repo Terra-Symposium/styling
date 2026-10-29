@@ -1,13 +1,12 @@
 import { clsx } from 'clsx';
+import { Children, isValidElement } from 'react';
 import { twMerge } from 'tailwind-merge';
 import type { ClassValue } from 'clsx';
+import type { ReactNode } from 'react';
 
 export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
 }
-
-import { Children, isValidElement } from 'react';
-import type { ReactNode } from 'react';
 
 export function transformChildrenToString(children: ReactNode | ReactNode[]): string {
   if (!Array.isArray(children) && !isValidElement(children)) return childToString(children);

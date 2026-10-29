@@ -26,8 +26,6 @@ const DrawerClose = DrawerPrimitive.Close;
 /**
  * Drawer backdrop overlay element.
  *
- * @param className - Optional style class name applied to the overlay backdrop.
- * @param props - Additional props forwarded to DrawerPrimitive.Overlay.
  */
 const DrawerOverlay = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.Overlay>, React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>>(
 	({ className, ...props }, ref): React.JSX.Element => <DrawerPrimitive.Overlay ref={ref} className={cn('fixed inset-0 z-50 bg-black/80', className)} {...props} />,
@@ -36,9 +34,7 @@ const DrawerOverlay = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.O
 /**
  * Drawer container content element rendered inside portal with overlay.
  *
- * @param className - Optional style class name applied to the content container.
  * @param children - Drawer content elements.
- * @param props - Additional props forwarded to DrawerPrimitive.Content.
  */
 const DrawerContent = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.Content>, React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>>(
 	({ className, children, ...props }, ref): React.JSX.Element => (
@@ -59,8 +55,6 @@ const DrawerContent = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.C
 /**
  * Drawer accessible title heading primitive.
  *
- * @param className - Optional class name applied to the title heading.
- * @param props - Additional props forwarded to DrawerPrimitive.Title.
  */
 const DrawerTitle = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.Title>, React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>>(
 	({ className, ...props }, ref): React.JSX.Element => <DrawerPrimitive.Title ref={ref} className={cn('text-lg font-semibold leading-none tracking-tight', className)} {...props} />,
@@ -69,8 +63,6 @@ const DrawerTitle = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.Tit
 /**
  * Drawer accessible description text primitive.
  *
- * @param className - Optional class name applied to the description paragraph.
- * @param props - Additional props forwarded to DrawerPrimitive.Description.
  */
 const DrawerDescription = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.Description>, React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>>(
 	({ className, ...props }, ref): React.JSX.Element => <DrawerPrimitive.Description ref={ref} className={cn('text-sm', className)} {...props} />,
@@ -95,7 +87,6 @@ function Drawer({ shouldScaleBackground = true, ...props }: React.ComponentProps
 /**
  * Drawer header container.
  *
- * @param className - Class name applied to the header container element.
  * @param props - HTML attributes for the header container.
  *
  * @returns React element for the drawer header.
@@ -107,7 +98,6 @@ function DrawerHeader({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
 /**
  * Drawer footer container.
  *
- * @param className - Class name applied to the footer container element.
  * @param props - HTML attributes for the footer container.
  *
  * @returns React element for the drawer footer.

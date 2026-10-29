@@ -17,7 +17,6 @@ import { Command as CommandPrimitive } from 'cmdk';
 import { Dialog, DialogContent } from './dialog.js';
 
 // TYPES
-// TYPES
 import type { CommandDialogProps, CommandInputProps } from './types.js';
 
 /*//////////////////////////////////////////////////
@@ -34,10 +33,8 @@ const Command = React.forwardRef<React.ElementRef<typeof CommandPrimitive>, Reac
 /**
  * Command dialog.
  *
- * @param className - Optional class name applied to the command element.
  * @param children - Command content rendered inside the control.
  * @param size - Command size variant used by the control.
- * @param props - Additional command props forwarded to the primitive.
  */
 const CommandDialog = ({ className, children, size, ...props }: CommandDialogProps): React.JSX.Element => {
 	return (
@@ -65,30 +62,33 @@ const CommandDialog = ({ className, children, size, ...props }: CommandDialogPro
 /**
  * Command input control with optional clear button.
  */
-const CommandInput = React.forwardRef<React.ElementRef<typeof CommandPrimitive.Input>, CommandInputProps>(({ className, onClear, ...props }, ref): React.JSX.Element => (
-	<div className={cn('relative flex items-center px-3', className)} cmdk-input-wrapper=''>
-		<SearchIcon className='mr-2 size-4 shrink-0 opacity-50' aria-hidden='true' />
-		<CommandPrimitive.Input
-			ref={ref}
-			className={cn(
-				'flex w-full rounded-md bg-transparent py-2 text-sm outline-none placeholder:text-primary-11 disabled:cursor-not-allowed disabled:opacity-50',
-				'ring-0 focus:ring-0 focus-visible:ring-0',
-				props.value && onClear && 'pr-8',
+const CommandInput = React.forwardRef<React.ElementRef<typeof CommandPrimitive.Input>, CommandInputProps>(({ className, onClear, ...props }, ref): React.JSX.Element => {
+	const canClear = Boolean(props.value && onClear);
+	return (
+		<div className={cn('relative flex items-center px-3', className)} cmdk-input-wrapper=''>
+			<SearchIcon className='mr-2 size-4 shrink-0 opacity-50' aria-hidden='true' />
+			<CommandPrimitive.Input
+				ref={ref}
+				className={cn(
+					'flex w-full rounded-md bg-transparent py-2 text-sm outline-none placeholder:text-primary-11 disabled:cursor-not-allowed disabled:opacity-50',
+					'ring-0 focus:ring-0 focus-visible:ring-0',
+					canClear && 'pr-8',
+				)}
+				{...props}
+			/>
+			{canClear && (
+				<button
+					type='button'
+					onClick={onClear}
+					className='absolute right-3 rounded-full p-1 text-primary-11 hover:bg-primary-5 hover:text-primary-12 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-9'
+					aria-label='Clear search query'
+				>
+					<CloseIcon className='size-3.5' aria-hidden='true' />
+				</button>
 			)}
-			{...props}
-		/>
-		{props.value && onClear && (
-			<button
-				type='button'
-				onClick={onClear}
-				className='absolute right-3 rounded-full p-1 text-primary-11 hover:bg-primary-5 hover:text-primary-12 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-9'
-				aria-label='Clear search query'
-			>
-				<CloseIcon className='size-3.5' aria-hidden='true' />
-			</button>
-		)}
-	</div>
-));
+		</div>
+	);
+});
 
 /**
  * Scrollable list container for command items.
@@ -153,8 +153,6 @@ const CommandItem = React.forwardRef<React.ElementRef<typeof CommandPrimitive.It
 /**
  * Command shortcut indicator text.
  *
- * @param className - Optional class name applied to the command element.
- * @param props - Additional command props forwarded to the primitive.
  */
 const CommandShortcut = Object.assign(
 	({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>): React.JSX.Element => {
@@ -170,7 +168,7 @@ HELPERS
 /**
  * Renders the generic empty state for search surfaces.
  *
- * @param props - Search query displayed in the empty-results message.
+ * @param query - Search term shown in the no-results message.
  *
  * @return Accessible empty-results message with guidance for the user.
  */
@@ -198,8 +196,6 @@ export function SearchEmpty({ query }: { query: string }): React.JSX.Element {
 /**
  * Searchable command dialog with a shared empty-results fallback.
  *
- * @param props - Props object containing the inputs required by search dialog.
- *
  * @return Command dialog with its header, input, toolbar, and result list.
  */
 function SearchDialog({
@@ -213,13 +209,13 @@ function SearchDialog({
 	...props
 }: /* Props accepted by a search dialog props. */
 Omit<CommandDialogProps, 'children'> & {
-	header?: import('react').ReactNode;
+	header?: React.ReactNode;
 	input: CommandInputProps;
-	toolbar?: import('react').ReactNode;
+	toolbar?: React.ReactNode;
 	listClassName?: string;
-	fallback?: import('react').ReactNode;
+	fallback?: React.ReactNode;
 	loading?: boolean;
-	children: import('react').ReactNode;
+	children: React.ReactNode;
 }): React.JSX.Element {
 	return (
 		<CommandDialog {...props}>

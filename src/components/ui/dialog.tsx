@@ -140,8 +140,6 @@ DialogContent.displayName = DialogPrimitive.Content.displayName;
 /**
  * Dialog header.
  *
- * @param className - Optional class name applied to the dialog element.
- * @param props - Additional dialog props forwarded to the primitive.
  */
 const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => <div className={cn('mb-4 flex flex-col text-center sm:text-left', className)} {...props} />;
 DialogHeader.displayName = 'DialogHeader';
@@ -150,8 +148,6 @@ DialogHeader.displayName = 'DialogHeader';
 /**
  * Dialog footer.
  *
- * @param className - Optional class name applied to the dialog element.
- * @param props - Additional dialog props forwarded to the primitive.
  */
 const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => (
 	<div className={cn('mt-2 flex flex-col-reverse gap-2 bg-primary-1 sm:flex-row sm:justify-end', className)} {...props} />

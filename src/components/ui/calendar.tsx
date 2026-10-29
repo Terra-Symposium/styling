@@ -69,8 +69,6 @@ COMPONENT
  * with the upstream `ClassNames` typing, which previously triggered an
  * unsafe-argument diagnostic.
  *
- * @param props - Props object containing the inputs required by calendar.
- *
  * @return A fully styled calendar component.
  */
 function Calendar({
@@ -247,8 +245,6 @@ function Calendar({
 
 /**
  * Renders the btn for a single day in the calendar.
- *
- * @param props - Props object containing the inputs required by calendar day button.
  *
  * @return A React btn component for a calendar day.
  */

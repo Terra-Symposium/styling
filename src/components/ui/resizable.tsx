@@ -22,8 +22,6 @@ COMPONENTS
  * Resizable grip.
  *
  * @param withHandle - Whether the resize handle should be visible.
- * @param className - Optional class name applied to the handle.
- * @param props - Additional handle props forwarded to the primitive.
  */
 const ResizableGrip = ({ withHandle, className, ...props }: React.HTMLAttributes<HTMLDivElement> & { withHandle?: boolean }): React.JSX.Element => (
 	<div

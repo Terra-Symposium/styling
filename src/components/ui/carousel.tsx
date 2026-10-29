@@ -32,7 +32,6 @@ CarouselCtx.displayName = 'CarouselContext';
  * @param opts - Embla carousel cfg opts.
  * @param setApi - Optional callback to expose the Embla API to callers.
  * @param plugins - Optional list of Embla plugins.
- * @param className - Optional style overrides for the root el.
  *
  * @returns A focusable carousel region with ctx for child components.
  */
@@ -96,8 +95,6 @@ const Carousel = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
 /**
  * Container for all carousel items, responsible for overflow and track layout.
  *
- * @param className - Optional style overrides applied to the track.
- *
  * @returns A scrollable track region controlled by Embla.
  */
 const CarouselContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref): React.JSX.Element => {
@@ -111,8 +108,6 @@ const CarouselContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
 /**
  * Single slide within the carousel.
  *
- * @param className - Optional style overrides for the slide container.
- *
  * @returns A group element representing an individual slide.
  */
 const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref): React.JSX.Element => {
@@ -122,7 +117,6 @@ const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
 /**
  * Button control for navigating to the prev carousel slide.
  *
- * @param className - Optional style overrides for the btn.
  * @param variant - Button variant used for the control.
  * @param size - Button size used for the control.
  *
@@ -150,7 +144,6 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
 /**
  * Button control for navigating to the next carousel slide.
  *
- * @param className - Optional style overrides for the btn.
  * @param variant - Button variant used for the control.
  * @param size - Button size used for the control.
  *

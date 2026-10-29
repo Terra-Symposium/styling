@@ -19,8 +19,6 @@ import { CloseLarge as CloseIcon } from '@carbon/icons-react';
 // DATA
 import { SURFACE_VARIANTS } from './variants.js';
 
-// TYPES
-
 /*//////////////////////////////////////////////////
 CONFIG
 //////////////////////////////////////////////////*/
@@ -30,7 +28,6 @@ const SheetTrigger = SheetPrimitive.Trigger;
 /**
  * Dimmed background overlay element for the sheet dialog.
  *
- * @param className - Optional style overrides for the overlay element.
  * @param props - Forwarded primitive properties for the sheet overlay.
  * @param ref - Forwarded reference to the underlying DOM element.
  *
@@ -49,14 +46,13 @@ const SheetOverlay = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Ove
  * Core content region of the sheet, responsible for layout and close affordance.
  *
  * @param side - Screen edge from which the sheet should appear.
- * @param className - Optional style overrides for the content surface.
  * @param children - Arbitrary content rendered inside the sheet.
  *
  * @returns A positioned dialog panel with a built-in close btn.
  */
 const SheetContent = React.forwardRef<
 	React.ElementRef<typeof SheetPrimitive.Content>,
-	import('react').ComponentPropsWithoutRef<typeof import('@radix-ui/react-dialog').Content> & {
+	React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content> & {
 		side?: 'top' | 'bottom' | 'left' | 'right';
 	}
 >(({ side = 'right', className, children, ...props }, ref): React.JSX.Element => (
@@ -91,10 +87,6 @@ const SheetContent = React.forwardRef<
 /**
  * Header region for sheet content, typically containing title and description.
  *
- * @param className - Optional style overrides for the header container.
- *
- * @param props - Additional sheet props forwarded to the primitive.
- *
  * @returns A flex container aligning header els vertically.
  */
 const SheetHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => (
@@ -102,10 +94,6 @@ const SheetHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
 );
 /**
  * Footer region for sheet content, usually hosting primary and secondary actions.
- *
- * @param className - Optional style overrides for the footer container.
- *
- * @param props - Additional sheet props forwarded to the primitive.
  *
  * @returns A responsive flex row that reorders actions on small screens.
  */
@@ -115,8 +103,6 @@ const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
 /**
  * Title text for the sheet dialog.
  *
- * @param className - Optional style overrides for the title el.
- *
  * @returns A styled heading el representing the sheet title.
  */
 const SheetTitle = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Title>, React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>>(({ className, ...props }, ref): React.JSX.Element => (
@@ -124,8 +110,6 @@ const SheetTitle = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Title
 ));
 /**
  * Supporting description text for the sheet dialog.
- *
- * @param className - Optional style overrides for the description el.
  *
  * @returns A styled paragraph el providing additional ctx.
  */
