@@ -30,9 +30,9 @@ INTERNAL HELPERS
 /**
  * Computes the navigation button class name for the calendar.
  *
- * @param variant - Visual variant controlling get nav button class name's presentation.
+ * @param variant - Button variant used by the calendar navigation controls.
  *
- * @return merged class name string.
+ * @return The combined classes for the selected navigation button variant.
  *
  * @remarks
  * Centralising this keeps the nav controls visually consistent across size presets.
@@ -60,18 +60,11 @@ COMPONENT
 //////////////////////////////////////////////////*/
 
 /**
- * Renders a calendar component based on React DayPicker. Supports fixed-width ('xs', 'sm', 'md',
- * 'lg') and fluid-width ('responsive') layouts. Cell and text size scale based on the 'size' prop.
+ * React DayPicker wrapper with compact, fixed-width, and responsive layouts.
+ * `size` scales calendar cells and text; `buttonVariant` styles month navigation.
  *
- * The `classNames.table` property is handled by explicitly indexing into the
- * `defaultClassNames` object with a union of known keys. We avoid directly
- * accessing `defaultClassNames.table` in a way that would be incompatible
- * with the upstream `ClassNames` typing, which previously triggered an
- * unsafe-argument diagnostic.
- *
- * @param props - Props object containing the inputs required by calendar.
- *
- * @return A fully styled calendar component.
+ * @param props - DayPicker settings, size, navigation variant, and class overrides.
+ * @returns A styled calendar with a custom day button.
  */
 function Calendar({
 	className,
@@ -228,7 +221,7 @@ function Calendar({
 					if (orientation === 'right') return <ChevronRightIcon className={cn('size-4', chevronClassName)} aria-hidden='true' {...chevronProps} />;
 					return <ChevronDownIcon className={cn('size-4', chevronClassName)} aria-hidden='true' {...chevronProps} />;
 				},
-				// use the custom styled btn component below
+				// Use the custom styled day button defined below.
 				DayButton: CalendarDayButton,
 				/* Component for the week number. */
 				WeekNumber: ({ children, ...weekNumberProps }) => {
@@ -246,11 +239,10 @@ function Calendar({
 }
 
 /**
- * Renders the btn for a single day in the calendar.
+ * Custom day button that preserves DayPicker focus and selection state styling.
  *
- * @param props - Props object containing the inputs required by calendar day button.
- *
- * @return A React btn component for a calendar day.
+ * @param props - Day data, modifiers, and button attributes supplied by DayPicker.
+ * @returns A day button with DayPicker's keyboard and selection state.
  */
 function CalendarDayButton({ className, day, modifiers, ...props }: React.ComponentProps<typeof DayButton>): React.JSX.Element {
 	// create a ref to manually manage focus

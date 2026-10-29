@@ -24,16 +24,12 @@ COMPONENTS
 //////////////////////////////////////////////////*/
 
 /**
- * Wrapper around the Radix `Slider` primitive with sensible defaults.
+ * Radix slider wrapper for controlled or uncontrolled values. Without custom
+ * `children`, it renders one thumb per controlled `value` (or `defaultValue`)
+ * entry, and renders two thumbs when neither prop is an array.
  *
- * This component:
- * - Supports both controlled (`value`) and uncontrolled (`defaultValue`) usage.
- * - Automatically determines how many thumbs to render based on `value`/`defaultValue`.
- * - Applies a responsive horizontal/vertical layout with Tailwind utilities.
- *
- * @param props - Props object containing the inputs required by slider.
- *
- * @return Radix slider with responsive layout and controlled or uncontrolled values.
+ * @param props - Radix slider settings, optional custom children, and accessible labels.
+ * @returns A slider root with a track, range, and value-matched thumbs.
  */
 function Slider({
 	className,

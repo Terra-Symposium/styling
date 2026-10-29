@@ -26,15 +26,15 @@ LOCAL TYPES
 const CarouselCtx = React.createContext<CarouselCtxProps | null>(null);
 CarouselCtx.displayName = 'CarouselContext';
 /**
- * Root carousel container that wires up Embla and exposes navigation state.
+ * Accessible carousel region with Embla navigation state and left/right arrow-key controls.
  *
  * @param orientation - Scroll axis, either horizontal or vertical.
- * @param opts - Embla carousel cfg opts.
+ * @param opts - Embla carousel options.
  * @param setApi - Optional callback to expose the Embla API to callers.
  * @param plugins - Optional list of Embla plugins.
- * @param className - Optional style overrides for the root el.
+ * @param className - Optional style overrides for the root element.
  *
- * @returns A focusable carousel region with ctx for child components.
+ * @returns A carousel region that provides navigation state to its children.
  */
 const Carousel = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement> & CarouselProps>(
 	({ orientation = 'horizontal', opts, setApi, plugins, className, children, ...props }, ref): React.JSX.Element => {
@@ -122,11 +122,11 @@ const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
 /**
  * Button control for navigating to the prev carousel slide.
  *
- * @param className - Optional style overrides for the btn.
+ * @param className - Optional style overrides for the button.
  * @param variant - Button variant used for the control.
  * @param size - Button size used for the control.
  *
- * @returns A btn that moves the carousel to the prev slide.
+ * @returns A button that moves the carousel to the previous slide.
  */
 const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
 	({ className, variant = 'outline', size = 'icon', 'aria-label': ariaLabel = 'Previous slide', ...props }, ref): React.JSX.Element => {
@@ -150,11 +150,11 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
 /**
  * Button control for navigating to the next carousel slide.
  *
- * @param className - Optional style overrides for the btn.
+ * @param className - Optional style overrides for the button.
  * @param variant - Button variant used for the control.
  * @param size - Button size used for the control.
  *
- * @returns A btn that moves the carousel to the next slide.
+ * @returns A button that moves the carousel to the next slide.
  */
 const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
 	({ className, variant = 'outline', size = 'icon', 'aria-label': ariaLabel = 'Next slide', ...props }, ref): React.JSX.Element => {
@@ -181,9 +181,9 @@ COMPONENTS
 //////////////////////////////////////////////////*/
 
 /**
- * Shared hook for accessing the cur carousel ctx.
+ * Shared hook for accessing the current carousel context.
  *
- * @return active carousel ctx, including API and helpers.
+ * @return The active carousel API, navigation state, and scroll helpers.
  *
  * @throws If used outside of a mounted `Carousel` provider.
  */

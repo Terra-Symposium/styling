@@ -62,16 +62,16 @@ function Select({
 }
 
 /**
- * Group wrapper for related select items.
+ * Group wrapper for related select options.
  *
- * @returns A labeled grouping element for select opts.
+ * @returns A grouping element for related select options.
  */
 const SelectGroup = SelectPrimitive.Group;
 
 /**
- * Displays the currently selected value inside the trigger.
+ * Displays the selected value or placeholder inside the trigger.
  *
- * @returns A read-only value container for the active opt.
+ * @returns A read-only value container for the current selection.
  */
 const SelectValue = SelectPrimitive.Value;
 
@@ -81,7 +81,7 @@ const SelectValue = SelectPrimitive.Value;
  * @param className - Optional style overrides for the trigger.
  * @param children - Trigger label and value content.
  *
- * @returns A btn-like control that toggles the select menu.
+ * @returns A control that toggles the select menu.
  */
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
@@ -138,9 +138,9 @@ const SelectTrigger = React.forwardRef<
 /**
  * Scroll control displayed at the top of the select content.
  *
- * @param className - Optional style overrides for the scroll btn.
+ * @param className - Optional style overrides for the scroll control.
  *
- * @returns A btn that scrolls the opt list upwards.
+ * @returns A control that scrolls the option list upwards.
  */
 const SelectScrollUpButton = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.ScrollUpButton>,
@@ -162,9 +162,9 @@ const SelectScrollUpButton = React.forwardRef<
 /**
  * Scroll control displayed at the bottom of the select content.
  *
- * @param className - Optional style overrides for the scroll btn.
+ * @param className - Optional style overrides for the scroll control.
  *
- * @returns A btn that scrolls the opt list downwards.
+ * @returns A control that scrolls the option list downwards.
  */
 const SelectScrollDownButton = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.ScrollDownButton>,
@@ -184,13 +184,13 @@ const SelectScrollDownButton = React.forwardRef<
 ));
 
 /**
- * Overlay panel that renders the select opts.
+ * Overlay panel that renders the select options.
  *
  * @param className - Optional style overrides for the content surface.
  * @param children - Option groups and items to render.
  * @param position - Positioning strategy for the content (default: 'popper').
  *
- * @returns A portal-based panel containing the opt list.
+ * @returns A panel containing the option list, optionally rendered in a portal.
  */
 const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
@@ -244,7 +244,7 @@ const SelectContent = React.forwardRef<
  *
  * @param className - Optional style overrides for the label.
  *
- * @returns A styled label element inside the opt list.
+ * @returns A styled label for an option group.
  */
 const SelectLabel = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Label>,
@@ -258,12 +258,12 @@ const SelectLabel = React.forwardRef<
 ));
 
 /**
- * Single opt within the select menu.
+ * Single option within the select menu.
  *
- * @param className - Optional style overrides for the opt row.
- * @param children - Human-readable opt label.
+ * @param className - Optional style overrides for the option row.
+ * @param children - Option label.
  *
- * @returns A selectable item with active and checked state styling.
+ * @returns A selectable option with highlighted and selected state styling.
  */
 const SelectItem = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
@@ -305,11 +305,11 @@ const SelectItem = React.forwardRef<
 });
 
 /**
- * Visual divider used to separate logical groups of opts.
+ * Visual divider used to separate logical groups of options.
  *
  * @param className - Optional style overrides for the separator.
  *
- * @returns A horizontal rule inside the opt list.
+ * @returns A horizontal rule inside the option list.
  */
 const SelectSeparator = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Separator>,

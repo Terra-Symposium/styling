@@ -54,6 +54,7 @@ function Example({ title, children }: { title: string; children: ReactNode }) {
 	);
 }
 
+/** Shows shared UI with portals and hue variables scoped to the showcase root. */
 export function ComponentShowcase() {
 	const [checked, setChecked] = useState(true);
 	const [enabled, setEnabled] = useState(true);

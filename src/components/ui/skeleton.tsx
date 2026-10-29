@@ -15,15 +15,11 @@ COMPONENTS
 //////////////////////////////////////////////////*/
 
 /**
- * Generic loading skeleton block used to indicate content is being fetched.
+ * Pulsing placeholder hidden from assistive technology by default. Set
+ * `aria-label` to expose a custom status, or `aria-hidden={false}` to expose `Loading...`.
  *
- * This component:
- * - Renders a rounded, pulsing div that adapts to its container size.
- * - Inherits additional class names so it can be shaped as text, cards, avatars, etc.
- *
- * @param props - Props object containing the inputs required by skeleton.
- *
- * @return A div styled as a skeleton placeholder.
+ * @param props - Div attributes and optional status name or visibility setting.
+ * @returns A pulsing status placeholder.
  */
 function Skeleton({ className, 'aria-label': ariaLabel, 'aria-hidden': ariaHidden, ...props }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element {
 	return (

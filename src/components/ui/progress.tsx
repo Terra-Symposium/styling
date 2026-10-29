@@ -22,11 +22,11 @@ COMPONENTS
 //////////////////////////////////////////////////*/
 
 /**
- * Shadcn-style progress primitive.
+ * Radix progress bar that maps non-finite values to zero and supplies a default
+ * accessible label when neither `aria-label` nor `aria-labelledby` is provided.
  *
- * @param props - Props object containing the inputs required by progress.
- *
- * @return Progress bar whose indicator reflects the supplied numeric value.
+ * @param props - Radix progress settings, numeric value, and accessible naming attributes.
+ * @returns A progressbar root and its visual indicator.
  */
 export function Progress({ className, value, ...props }: ComponentProps<typeof ProgressPrimitive.Root> & { value?: number | null }): React.JSX.Element {
 	const progressValue = value == null ? value : Number.isFinite(value) ? value : 0;

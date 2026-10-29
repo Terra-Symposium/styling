@@ -151,8 +151,8 @@ const DropdownMenuSeparator = React.forwardRef<React.ElementRef<typeof DropdownM
 /**
  * Keyboard shortcut indicator label aligned to the trailing side of a menu item.
  *
- * @param className - Optional class name applied to the dropdown element.
- * @param props - Additional dropdown props forwarded to the primitive.
+ * @param className - Optional style overrides for the shortcut label.
+ * @param props - Additional span attributes forwarded to the label.
  */
 const DropdownMenuShortcut = Object.assign(
 	({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>): React.JSX.Element => {

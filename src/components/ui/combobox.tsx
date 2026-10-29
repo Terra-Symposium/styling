@@ -44,7 +44,7 @@ export function Combobox({
 	emptyMessage,
 	renderOption,
 	placeholder,
-	...attrs // 'attrs' is now "clean"
+	...attrs // These remaining props are button attributes after combobox options are removed.
 }: UiButtonButtonProps & {
 	opts: UiComboboxOption[];
 	label?: { value: string; plural: string };
@@ -61,13 +61,13 @@ export function Combobox({
 	const [open, setOpen] = React.useState(false);
 	const [internalValue, setInternalValue] = React.useState<string | null | undefined>(defaultValue);
 
-	/** Selected opt; either controlled or internal value */
-	// Ternary prevents uncontrolled value being used as fallback
+	/** Selected option from the controlled value or internal selection. */
+	// A controlled value never falls back to the internal selection.
 	const sel =
 		valueProp !== undefined
 			? (opts?.find(o => o.value === valueProp) ?? null)
-			: /* Ensure internalValue is inside opts array (will invalidate selection when opts change) */ (opts?.find(o => o.value === internalValue) ?? null);
-	// store prev value to prevent repeated calls with null
+			: /* Ignore internal values that no longer have a matching option. */ (opts?.find(o => o.value === internalValue) ?? null);
+	// Report an empty selection only when the selection changes to empty.
 	const prevSelection = React.useRef(sel);
 	// effect necessary to avoid violating rules of hooks
 	React.useEffect(() => {
@@ -108,7 +108,7 @@ export function Combobox({
 									value={opt.value}
 									keywords={[transformChildrenToString(opt.label)]}
 									onSelect={v => {
-										// Unset value on reselection of cur opt
+										// Selecting the current option again clears the selection.
 										onValueChange(v === sel?.value ? null : v);
 										setInternalValue(v === sel?.value ? null : v);
 										setOpen(false);

@@ -18,11 +18,10 @@ COMPONENTS
 //////////////////////////////////////////////////*/
 
 /**
- * Lightweight loading indicator built on top of the Carbon loading icon.
+ * Small SVG loading indicator with status semantics.
  *
- * @param props - Props object containing the inputs required by spinner.
- *
- * @return A spinning SVG icon with accessible loading semantics.
+ * @param props - SVG attributes forwarded to the loading icon.
+ * @returns An SVG status icon labelled `Loading`.
  */
 function Spinner({ className, ...props }: React.ComponentProps<'svg'>): React.JSX.Element {
 	return <LoadIcon role='status' aria-label='Loading' className={cn('size-4 animate-spin', className)} {...props} />;

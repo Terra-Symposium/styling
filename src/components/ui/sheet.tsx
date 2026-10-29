@@ -54,7 +54,7 @@ const SheetOverlay = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Ove
  * @param className - Optional style overrides for the content surface.
  * @param children - Arbitrary content rendered inside the sheet.
  *
- * @returns A positioned dialog panel with a built-in close btn.
+ * @returns A positioned dialog panel with a built-in close button.
  */
 const SheetContent = React.forwardRef<
 	React.ElementRef<typeof SheetPrimitive.Content>,
@@ -96,21 +96,21 @@ const SheetContent = React.forwardRef<
  *
  * @param className - Optional style overrides for the header container.
  *
- * @param props - Additional sheet props forwarded to the primitive.
+ * @param props - Additional div attributes forwarded to the header container.
  *
- * @returns A flex container aligning header els vertically.
+ * @returns A flex column for the sheet title and description.
  */
 const SheetHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => (
 	<div className={cn('flex flex-col space-y-2 text-center sm:text-left', className)} {...props} />
 );
 /**
- * Footer region for sheet content, usually hosting primary and secondary actions.
+ * Footer container for primary and secondary sheet actions.
  *
  * @param className - Optional style overrides for the footer container.
  *
- * @param props - Additional sheet props forwarded to the primitive.
+ * @param props - Additional div attributes forwarded to the footer container.
  *
- * @returns A responsive flex row that reorders actions on small screens.
+ * @returns A responsive div that reverses actions on small screens and aligns them in a row at larger sizes.
  */
 const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>): React.JSX.Element => (
 	<div className={cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)} {...props} />
@@ -118,9 +118,9 @@ const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
 /**
  * Title text for the sheet dialog.
  *
- * @param className - Optional style overrides for the title el.
+ * @param className - Optional style overrides for the title.
  *
- * @returns A styled heading el representing the sheet title.
+ * @returns A styled heading that names the sheet dialog.
  */
 const SheetTitle = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Title>, React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>>(({ className, ...props }, ref): React.JSX.Element => (
 	<SheetPrimitive.Title ref={ref} className={cn('text-lg font-semibold text-primary-12', className)} {...props} />
@@ -128,9 +128,9 @@ const SheetTitle = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Title
 /**
  * Supporting description text for the sheet dialog.
  *
- * @param className - Optional style overrides for the description el.
+ * @param className - Optional style overrides for the description.
  *
- * @returns A styled paragraph el providing additional ctx.
+ * @returns A styled paragraph describing the sheet dialog.
  */
 const SheetDescription = React.forwardRef<
 	React.ElementRef<typeof SheetPrimitive.Description>,
