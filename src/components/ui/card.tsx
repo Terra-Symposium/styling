@@ -60,7 +60,7 @@ const Card = React.forwardRef<HTMLDivElement | HTMLAnchorElement, CardProps>((pr
 	const {
 		children,
 		className,
-		variant = 'gray-default',
+		variant = 'gray-outline',
 		size = 'md',
 		inverse,
 		disabled,
