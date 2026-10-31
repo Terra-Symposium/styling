@@ -22,9 +22,6 @@ COMPONENTS
 /**
  * Accessible form label component built on top of Radix UI Label primitive.
  *
- * @param className - Optional class name overrides for the label.
- * @param props - Additional props forwarded to LabelPrimitive.Root.
- *
  * @returns React element for the form label.
  */
 const Label = React.forwardRef<React.ElementRef<typeof LabelPrimitive.Root>, React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>>(({ className, ...props }, ref): React.JSX.Element => (

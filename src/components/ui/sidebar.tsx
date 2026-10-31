@@ -254,7 +254,6 @@ Sidebar.displayName = 'Sidebar';
  *
  * Hidden when printing.
  *
- * @param className - Optional style overrides for the trigger button.
  * @param onClick - Optional click handler invoked before toggling.
  *
  * @returns A ghost icon button wired to the sidebar context.
@@ -614,7 +613,7 @@ SidebarMenuSub.displayName = 'SidebarMenuSub';
 /**
  * Individual list item wrapper for submenu entries.
  */
-const SidebarMenuSubItem = React.forwardRef<HTMLLIElement, React.ComponentProps<'li'>>(({ ...props }, ref): React.JSX.Element => <li ref={ref} {...props} />);
+const SidebarMenuSubItem = React.forwardRef<HTMLLIElement, React.ComponentProps<'li'>>((props, ref): React.JSX.Element => <li ref={ref} {...props} />);
 SidebarMenuSubItem.displayName = 'SidebarMenuSubItem';
 
 /**

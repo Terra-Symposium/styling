@@ -20,8 +20,6 @@ COMPONENTS
 /**
  * Table container primitive.
  *
- * @param className - Optional class name applied to the table.
- * @param props - Additional HTML table attributes forwarded to the element.
  */
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(({ className, ...props }, ref): React.JSX.Element => (
 	<div className='relative w-full overflow-auto'>
@@ -32,8 +30,6 @@ const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableE
 /**
  * Table header primitive (`<thead>`).
  *
- * @param className - Optional class name applied to the header.
- * @param props - Additional HTML table section attributes forwarded to the element.
  */
 const TableHeader = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(({ className, ...props }, ref): React.JSX.Element => (
 	<thead ref={ref} className={cn('[&_tr]:border-b', className)} {...props} />
@@ -42,8 +38,6 @@ const TableHeader = React.forwardRef<HTMLTableSectionElement, React.HTMLAttribut
 /**
  * Table body primitive (`<tbody>`).
  *
- * @param className - Optional class name applied to the body.
- * @param props - Additional HTML table section attributes forwarded to the element.
  */
 const TableBody = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(({ className, ...props }, ref): React.JSX.Element => (
 	<tbody ref={ref} className={cn('[&_tr:last-child]:border-0', className)} {...props} />
@@ -52,8 +46,6 @@ const TableBody = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes
 /**
  * Table footer primitive (`<tfoot>`).
  *
- * @param className - Optional class name applied to the footer.
- * @param props - Additional HTML table section attributes forwarded to the element.
  */
 const TableFooter = Object.assign(
 	React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(({ className, ...props }, ref): React.JSX.Element => (
@@ -65,8 +57,6 @@ const TableFooter = Object.assign(
 /**
  * Table row primitive (`<tr>`).
  *
- * @param className - Optional class name applied to the row.
- * @param props - Additional HTML table row attributes forwarded to the element.
  */
 const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableRowElement>>(({ className, ...props }, ref): React.JSX.Element => (
 	<tr
@@ -84,8 +74,6 @@ const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTML
 /**
  * Table header cell primitive (`<th>`).
  *
- * @param className - Optional class name applied to the head cell.
- * @param props - Additional HTML table header cell attributes forwarded to the element.
  */
 const TableHead = React.forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<HTMLTableCellElement>>(({ className, ...props }, ref): React.JSX.Element => (
 	<th ref={ref} className={cn('h-12 px-4 text-left align-middle font-medium text-primary-11 [&:has([role=checkbox])]:pr-0', className)} {...props} />
@@ -94,8 +82,6 @@ const TableHead = React.forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<
 /**
  * Table cell primitive (`<td>`).
  *
- * @param className - Optional class name applied to the cell.
- * @param props - Additional HTML table cell attributes forwarded to the element.
  */
 const TableCell = React.forwardRef<HTMLTableCellElement, React.TdHTMLAttributes<HTMLTableCellElement>>(({ className, ...props }, ref): React.JSX.Element => (
 	<td ref={ref} className={cn('p-4 align-middle print:p-2 [&:has([role=checkbox])]:pr-0', className)} {...props} />
@@ -104,8 +90,6 @@ const TableCell = React.forwardRef<HTMLTableCellElement, React.TdHTMLAttributes<
 /**
  * Table caption primitive (`<caption>`).
  *
- * @param className - Optional class name applied to the caption.
- * @param props - Additional HTML table caption attributes forwarded to the element.
  */
 const TableCaption = Object.assign(
 	React.forwardRef<HTMLTableCaptionElement, React.HTMLAttributes<HTMLTableCaptionElement>>(({ className, ...props }, ref): React.JSX.Element => (

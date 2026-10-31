@@ -53,8 +53,6 @@ COMPONENTS
 /**
  * RadioGroup root container primitive.
  *
- * @param className - Optional class name applied to the group container.
- * @param props - Additional props forwarded to RadioGroupPrimitive.Root.
  */
 const RadioGroup = React.forwardRef<
 	React.ElementRef<typeof RadioGroupPrimitive.Root>,
@@ -94,9 +92,7 @@ const RadioGroup = React.forwardRef<
 /**
  * RadioGroup item primitive control.
  *
- * @param className - Optional class name applied to the item element.
  * @param variant - Optional color scheme variant ('primary' or 'secondary').
- * @param props - Additional props forwarded to RadioGroupPrimitive.Item.
  */
 const RadioGroupItem = React.forwardRef<
 	React.ElementRef<typeof RadioGroupPrimitive.Item>,
@@ -128,11 +124,9 @@ const RadioGroupItem = React.forwardRef<
 /**
  * RadioGroup card item component for selectable card UI.
  *
- * @param className - Optional class name applied to the card item element.
  * @param variant - Card color and state variant.
  * @param size - Card padding and text size variant.
  * @param children - Card contents.
- * @param props - Additional props forwarded to RadioGroupPrimitive.Item.
  */
 const RadioGroupCard = React.forwardRef<
 	React.ElementRef<typeof RadioGroupPrimitive.Item>,
@@ -165,8 +159,6 @@ const RadioGroupCard = React.forwardRef<
 /**
  * RadioGroup indicator component.
  *
- * @param className - Optional class name applied to the indicator element.
- * @param props - Additional props forwarded to RadioGroupPrimitive.Indicator.
  */
 const RadioGroupIndicator = Object.assign(
 	React.forwardRef<React.ElementRef<typeof RadioGroupPrimitive.Indicator>, React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Indicator>>(({ className, ...props }, ref): React.JSX.Element => (

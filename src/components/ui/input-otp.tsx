@@ -76,7 +76,7 @@ const InputOTPSlot = React.forwardRef<React.ElementRef<'div'>, React.ComponentPr
  * Decorative separator between OTP slot groups.
  */
 const InputOTPSeparator = Object.assign(
-	React.forwardRef<React.ElementRef<'div'>, React.ComponentPropsWithoutRef<'div'>>(({ ...props }, ref): React.JSX.Element => (
+	React.forwardRef<React.ElementRef<'div'>, React.ComponentPropsWithoutRef<'div'>>((props, ref): React.JSX.Element => (
 		<div ref={ref} role='separator' {...props}>
 			<DotIcon className='size-1' aria-hidden='true' />
 		</div>

@@ -35,21 +35,25 @@ COMPONENTS
 const VariantCtx = React.createContext<Variant>('default');
 VariantCtx.displayName = 'AccordionVariantContext';
 
+function useAccordionVariant(variant?: Variant): (typeof ACCORDION_VARIANT_CLASSES)[Variant] {
+	const contextVariant = React.useContext(VariantCtx);
+	return ACCORDION_VARIANT_CLASSES[variant ?? contextVariant];
+}
+
 /**
  * Accordion item container primitive with size variant context support.
  *
- * @param className - Optional class name applied to the item element.
  * @param variant - Optional size variant override ('default', 'sm', or 'xs').
- * @param props - Additional props forwarded to AccordionPrimitive.Item.
  */
 const AccordionItem = React.forwardRef<React.ElementRef<typeof AccordionPrimitive.Item>, React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> & { variant?: Variant }>(
 	({ className, variant: variantOverride, ...props }, ref): React.JSX.Element => {
+		const variant = useAccordionVariant(variantOverride);
 		return (
 			<AccordionPrimitive.Item
 				ref={ref}
 				className={cn(
 					'relative w-full min-w-0 overflow-hidden border-t border-primary-6',
-					ACCORDION_VARIANT_CLASSES[[React.useContext(VariantCtx), variantOverride][Number(variantOverride != null)] ?? 'default'].item,
+					variant.item,
 					className,
 				)}
 				{...props}
@@ -61,20 +65,19 @@ const AccordionItem = React.forwardRef<React.ElementRef<typeof AccordionPrimitiv
 /**
  * Accordion trigger header primitive with size variant context support.
  *
- * @param className - Optional class name applied to the trigger container.
  * @param children - Trigger label and interactive content.
  * @param variant - Optional size variant override ('default', 'sm', or 'xs').
- * @param props - Additional props forwarded to AccordionPrimitive.Trigger.
  */
 const AccordionTrigger = React.forwardRef<React.ElementRef<typeof AccordionPrimitive.Trigger>, React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & { variant?: Variant }>(
 	({ className, children, variant: variantOverride, ...props }, ref): React.JSX.Element => {
+		const variant = useAccordionVariant(variantOverride);
 		return (
 			<AccordionPrimitive.Header className={cn('flex w-full min-w-0', className)}>
 				<AccordionPrimitive.Trigger
 					ref={ref}
 					className={cn(
 						'flex w-full min-w-0 flex-1 items-center justify-between gap-2 rounded-sm text-primary-12 transition-all hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-9 focus-visible:ring-offset-2 [&[data-state=open]>svg]:rotate-180',
-						ACCORDION_VARIANT_CLASSES[[React.useContext(VariantCtx), variantOverride][Number(variantOverride != null)] ?? 'default'].trigger,
+						variant.trigger,
 					)}
 					{...props}
 				>
@@ -89,13 +92,12 @@ const AccordionTrigger = React.forwardRef<React.ElementRef<typeof AccordionPrimi
 /**
  * Accordion content container primitive with size variant context support.
  *
- * @param className - Optional class name applied to the content inner wrapper.
  * @param children - Collapsible accordion content elements.
  * @param variant - Optional size variant override ('default', 'sm', or 'xs').
- * @param props - Additional props forwarded to AccordionPrimitive.Content.
  */
 const AccordionContent = React.forwardRef<React.ElementRef<typeof AccordionPrimitive.Content>, React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> & { variant?: Variant }>(
 	({ className, children, variant: variantOverride, ...props }, ref): React.JSX.Element => {
+		const variant = useAccordionVariant(variantOverride);
 		return (
 			<AccordionPrimitive.Content
 				ref={ref}
@@ -103,7 +105,7 @@ const AccordionContent = React.forwardRef<React.ElementRef<typeof AccordionPrimi
 				className='w-full min-w-0 max-w-full overflow-hidden text-sm data-[state=closed]:pointer-events-none data-[state=closed]:absolute data-[state=closed]:left-0 data-[state=closed]:top-full data-[state=closed]:m-0 data-[state=closed]:h-0 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down print:!static print:!h-auto print:!animate-none print:!overflow-visible print:data-[state=closed]:!h-auto print:data-[state=closed]:!animate-none'
 				{...props}
 			>
-				<div className={cn('w-full min-w-0 pt-0', ACCORDION_VARIANT_CLASSES[[React.useContext(VariantCtx), variantOverride][Number(variantOverride != null)] ?? 'default'].content, className)}>
+				<div className={cn('w-full min-w-0 pt-0', variant.content, className)}>
 					{children}
 				</div>
 			</AccordionPrimitive.Content>
@@ -120,7 +122,6 @@ HELPERS
  *
  * @param props - Root accordion behavior and HTML attributes, plus the optional style variant shared with child items.
  * @param variant - Size variant applied to child items ('default', 'sm', or 'xs').
- * @param className - Optional class name applied to the accordion root container.
  *
  * @return Accordion root element.
  */

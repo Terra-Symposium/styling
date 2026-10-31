@@ -32,7 +32,6 @@ const SheetTrigger = SheetPrimitive.Trigger;
 /**
  * Dimmed background overlay element for the sheet dialog.
  *
- * @param className - Optional style overrides for the overlay element.
  * @param props - Forwarded primitive properties for the sheet overlay.
  * @param ref - Forwarded reference to the underlying DOM element.
  *
@@ -51,14 +50,13 @@ const SheetOverlay = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Ove
  * Core content region of the sheet, responsible for layout and close affordance.
  *
  * @param side - Screen edge from which the sheet should appear.
- * @param className - Optional style overrides for the content surface.
  * @param children - Arbitrary content rendered inside the sheet.
  *
  * @returns A positioned dialog panel with a built-in close button.
  */
 const SheetContent = React.forwardRef<
 	React.ElementRef<typeof SheetPrimitive.Content>,
-	import('react').ComponentPropsWithoutRef<typeof import('@radix-ui/react-dialog').Content> & {
+	React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content> & {
 		side?: 'top' | 'bottom' | 'left' | 'right';
 		variant?: SurfaceVariant;
 	}

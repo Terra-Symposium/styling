@@ -34,11 +34,9 @@ const ToggleGroupCtx = React.createContext<Required<VariantProps<typeof TOGGLE_V
  * The container for a set of toggle buttons. It accepts variants to style all its child items
  * consistently.
  *
- * @param className - Optional class name applied to the group container.
  * @param variant - Optional style variant for all child toggle items.
  * @param size - Optional size variant for all child toggle items.
  * @param children - ToggleGroup items.
- * @param props - Additional props forwarded to ToggleGroupPrimitive.Root.
  */
 const ToggleGroup = React.forwardRef<React.ElementRef<typeof ToggleGroupPrimitive.Root>, React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> & VariantProps<typeof TOGGLE_VARIANTS>>(
 	({ className, variant, size, children, ...props }, ref): React.JSX.Element => (
@@ -52,11 +50,9 @@ const ToggleGroup = React.forwardRef<React.ElementRef<typeof ToggleGroupPrimitiv
  * An individual toggle item that derives its styling from the local TOGGLE_VARIANTS, making it a
  * self-contained component.
  *
- * @param className - Optional class name applied to the item element.
  * @param children - Item content.
  * @param variant - Style variant override.
  * @param size - Size variant override.
- * @param props - Additional props forwarded to ToggleGroupPrimitive.Item.
  */
 const ToggleGroupItem = React.forwardRef<React.ElementRef<typeof ToggleGroupPrimitive.Item>, React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item> & VariantProps<typeof TOGGLE_VARIANTS>>(
 	({ className, children, variant, size, ...props }, ref): React.JSX.Element => {

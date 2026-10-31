@@ -14,8 +14,6 @@ import { cn } from '../../lib/cn.js';
 import * as React from 'react';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 
-// TYPES
-
 /*//////////////////////////////////////////////////
 COMPONENTS
 //////////////////////////////////////////////////*/
@@ -23,14 +21,12 @@ COMPONENTS
 /**
  * ScrollArea primitive component that partitions root and viewport layout classes.
  *
- * @param className - Class name string applied to the scroll area.
  * @param children - ScrollArea content elements.
  * @param viewportClassName - Additional class name applied specifically to the viewport.
- * @param props - Additional props forwarded to ScrollAreaPrimitive.Root.
  */
 const ScrollArea = React.forwardRef<
 	React.ElementRef<typeof ScrollAreaPrimitive.Root>,
-	import('react').ComponentPropsWithoutRef<typeof import('@radix-ui/react-scroll-area').Root> & {
+	React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & {
 		viewportClassName?: string;
 	}
 >(({ className, children, viewportClassName, ...props }, ref): React.JSX.Element => {
@@ -71,9 +67,7 @@ const ScrollArea = React.forwardRef<
 /**
  * ScrollBar primitive thumb/track component for the ScrollArea.
  *
- * @param className - Class name string applied to the scrollbar.
  * @param orientation - Scrollbar orientation ('vertical' or 'horizontal').
- * @param props - Additional props forwarded to ScrollAreaScrollbar.
  */
 const ScrollBar = React.forwardRef<React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>, React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>>(
 	({ className, orientation = 'vertical', ...props }, ref): React.JSX.Element => (

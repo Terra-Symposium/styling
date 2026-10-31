@@ -96,8 +96,6 @@ const Carousel = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
 /**
  * Container for all carousel items, responsible for overflow and track layout.
  *
- * @param className - Optional style overrides applied to the track.
- *
  * @returns A scrollable track region controlled by Embla.
  */
 const CarouselContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref): React.JSX.Element => {
@@ -110,8 +108,6 @@ const CarouselContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
 });
 /**
  * Single slide within the carousel.
- *
- * @param className - Optional style overrides for the slide container.
  *
  * @returns A group element representing an individual slide.
  */

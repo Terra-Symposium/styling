@@ -24,9 +24,7 @@ COMPONENTS
 /**
  * Interactive toggle switch component with support for checked, unchecked, and indeterminate states.
  *
- * @param className - Optional class name overrides for the switch container.
  * @param checked - Checked state (boolean, or null/undefined for indeterminate).
- * @param props - Additional props forwarded to SwitchPrimitives.Root.
  *
  * @returns React element for the toggle switch.
  */
@@ -57,8 +55,6 @@ const Switch = React.forwardRef<React.ElementRef<typeof SwitchPrimitives.Root>, 
 /**
  * Switch thumb component for the sliding handle indicator.
  *
- * @param className - Optional class name overrides for the switch thumb handle.
- * @param props - Additional props forwarded to SwitchPrimitives.Thumb.
  */
 const SwitchThumb = Object.assign(
 	React.forwardRef<React.ElementRef<typeof SwitchPrimitives.Thumb>, React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Thumb>>(({ className, ...props }, ref): React.JSX.Element => (
