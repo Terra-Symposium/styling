@@ -145,8 +145,6 @@ DialogContent.displayName = DialogPrimitive.Content.displayName;
 /**
  * Dialog header.
  *
- * @param className - Optional class name applied to the dialog element.
- * @param props - Additional dialog props forwarded to the primitive.
  * @return A dialog header container, optionally hidden from visual layout.
  */
 const DialogHeader = ({ className, visuallyHidden = false, ...props }: React.HTMLAttributes<HTMLDivElement> & { visuallyHidden?: boolean }): React.JSX.Element => <div data-slot='dialog-header' className={cn('mb-4 flex flex-col text-center sm:text-left', visuallyHidden && 'sr-only', className)} {...props} />;
@@ -156,8 +154,6 @@ DialogHeader.displayName = 'DialogHeader';
 /**
  * Dialog footer.
  *
- * @param className - Optional class name applied to the dialog element.
- * @param props - Additional dialog props forwarded to the primitive.
  * @return A dialog footer with optional close action and grid layout.
  */
 const DialogFooter = ({ className, layout = 'default', showCloseButton = false, children, ...props }: React.HTMLAttributes<HTMLDivElement> & { layout?: 'default' | 'grid'; showCloseButton?: boolean }): React.JSX.Element => (
