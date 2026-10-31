@@ -21,6 +21,7 @@ import { useOptionalFormContext } from './form.js';
 import { ACTION_VARIANTS } from './variants.js';
 
 // TYPES
+import type { VariantProps } from 'class-variance-authority';
 import type { UiButtonButtonProps as ButtonProps } from './types.js';
 import type { ButtonSize, ButtonVariant } from './types.js';
 

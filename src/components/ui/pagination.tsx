@@ -33,8 +33,6 @@ const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>): React
 /**
  * Container wrapper for pagination list controls.
  *
- * @param className - Optional class name applied to the pagination content element.
- * @param props - Additional HTML attributes forwarded to the element.
  */
 const PaginationContent = React.forwardRef<HTMLDivElement, React.ComponentProps<'div'>>(({ className, ...props }, ref): React.JSX.Element => (
 	<div ref={ref} className={cn('flex flex-row items-center gap-1 no-underline', className)} {...props} />
@@ -43,8 +41,6 @@ const PaginationContent = React.forwardRef<HTMLDivElement, React.ComponentProps<
 /**
  * Individual item button wrapper inside pagination navigation.
  *
- * @param className - Optional class name applied to the pagination item button.
- * @param props - Additional props forwarded to the Button component.
  */
 const PaginationItem = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(({ className, ...props }, ref): React.JSX.Element => (
 	<Button variant='ghost' ref={ref} className={cn('w-fit px-0 no-underline enabled:hover:bg-primary-3', className)} {...props} />
@@ -53,7 +49,6 @@ const PaginationItem = React.forwardRef<HTMLButtonElement, React.ComponentProps<
 /**
  * Renders the pagination link component.
  *
- * @param className - Optional class name applied to the pagination link.
  * @param isActive - Whether the link represents the current page.
  * @param disabled - Whether the link should reject interaction.
  * @param size - Link size variant used by the pagination control.

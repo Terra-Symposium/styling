@@ -156,9 +156,6 @@ const ContextMenuSeparator = React.forwardRef<React.ElementRef<typeof ContextMen
 /**
  * Context menu shortcut indicator.
  *
- * @param className - Optional class name applied to the context menu shortcut element.
- * @param props - Additional context-menu shortcut props forwarded to span.
- *
  * @returns Context menu keyboard shortcut indicator text.
  */
 const ContextMenuShortcut = Object.assign(

@@ -79,12 +79,11 @@ TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 /**
  * Renders the text tooltip component.
  *
- * @param content - Content input supplied to text tooltip's operation.
- * @param side - Side input supplied to text tooltip's operation.
- * @param align - Align input supplied to text tooltip's operation.
+ * @param content - Explanatory content; when empty, the trigger is returned without a tooltip.
+ * @param side - Edge of the trigger where the tooltip is placed.
+ * @param align - Alignment along the selected edge.
  * @param size - Size variant controlling text tooltip's dimensions.
- * @param delayDuration - Delay duration input supplied to text tooltip's operation.
- * @param className - Additional CSS classes merged into text tooltip.
+ * @param delayDuration - Delay before the tooltip opens, passed to the Radix root.
  * @param children - Child content nested inside text tooltip's rendered output.
  * @param attrs - Additional HTML attributes passed through text tooltip.
  * @param props - Tooltip text, trigger content, placement, delay, and attributes applied to the trigger.
@@ -129,8 +128,6 @@ export default function TextTooltip({
 // Stolen from Sanity UI
 /**
  * Renders the arrow component.
- *
- * @param props - Component props.
  *
  * @return SVG Arrow element.
  */

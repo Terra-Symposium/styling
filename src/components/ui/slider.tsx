@@ -85,8 +85,6 @@ function Slider({
 /**
  * Slider track primitive container.
  *
- * @param className - Optional class name applied to the track.
- * @param props - Additional props forwarded to SliderPrimitive.Track.
  */
 const SliderTrack = Object.assign(
 	React.forwardRef<React.ElementRef<typeof SliderPrimitive.Track>, React.ComponentPropsWithoutRef<typeof SliderPrimitive.Track>>(({ className, ...props }, ref): React.JSX.Element => (
@@ -98,8 +96,6 @@ const SliderTrack = Object.assign(
 /**
  * Slider range primitive fill indicator.
  *
- * @param className - Optional class name applied to the range element.
- * @param props - Additional props forwarded to SliderPrimitive.Range.
  */
 const SliderRange = Object.assign(
 	React.forwardRef<React.ElementRef<typeof SliderPrimitive.Range>, React.ComponentPropsWithoutRef<typeof SliderPrimitive.Range>>(({ className, ...props }, ref): React.JSX.Element => (
@@ -111,8 +107,6 @@ const SliderRange = Object.assign(
 /**
  * Slider thumb primitive handle.
  *
- * @param className - Optional class name applied to the thumb element.
- * @param props - Additional props forwarded to SliderPrimitive.Thumb.
  */
 const SliderThumb = Object.assign(
 	React.forwardRef<React.ElementRef<typeof SliderPrimitive.Thumb>, React.ComponentPropsWithoutRef<typeof SliderPrimitive.Thumb>>(({ className, ...props }, ref): React.JSX.Element => (

@@ -25,7 +25,6 @@ COMPONENTS
 /**
  * Visual container for contextual feedback msgs.
  *
- * @param className - Optional style overrides.
  * @param variant - Visual variant for the alert.
  *
  * @returns A styled alert wrapper el.
@@ -48,8 +47,6 @@ const Alert = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEleme
 /**
  * Heading text for an alert, used to summarise the msg content.
  *
- * @param className - Optional style overrides.
- *
  * @returns A styled heading el for the alert.
  */
 const AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(({ className, ...props }, ref): React.JSX.Element => (
@@ -58,8 +55,6 @@ const AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<H
 
 /**
  * Supporting body content for an alert, providing detailed ctx.
- *
- * @param className - Optional style overrides.
  *
  * @returns A styled container for alert description text.
  */

@@ -198,7 +198,7 @@ export function applyHue(hue: number | null, scope?: HTMLElement): void {
  *
  * @param scheme - Color scheme name prefix
  * @param colors - Color scales object containing light and dark themes
- * @param prefix - Prefix input supplied to flatten colors's operation.
+ * @param prefix - Whether generated keys should start with `--`.
  *
  * @return Flattened object with color variable names as keys
  */
@@ -225,8 +225,8 @@ export function flattenColors(scheme: string, colors: ColorScales, prefix: boole
 /**
  * Gets scales.
  *
- * @param theme - Theme input supplied to get scales's operation.
- * @param grayOnly - Gray only input supplied to get scales's operation.
+ * @param theme - Color-scheme appearance used to select light or dark Radix scales.
+ * @param grayOnly - When true, load only the six neutral gray families.
  *
  * @return Records containing Radix UI scales.
  */
@@ -272,7 +272,7 @@ function getScales(theme: 'light' | 'dark', grayOnly = false) {
  * Resolves the OKLab representation of a Color, caching the result to avoid
  * redundant color space conversions.
  *
- * @param color - Colour value converted into get oklab's displayed format.
+ * @param color - Color.js value to convert to OKLab.
  *
  * @return The cached OKLab color value used by perceptual-distance calculations.
  */
@@ -290,8 +290,8 @@ function getOklab(color: Color): Color {
  * This is mathematically equivalent to color.deltaEOK(other) but significantly faster
  * as it avoids repeated, expensive coordinate transformations on hot paths.
  *
- * @param c1 - C1 input supplied to delta eokfast's operation.
- * @param c2 - C2 input supplied to delta eokfast's operation.
+ * @param c1 - First color sample in the distance calculation.
+ * @param c2 - Second color sample in the distance calculation.
  *
  * @return The Euclidean distance between the colors in OKLab space.
  */
@@ -364,7 +364,7 @@ function genRadixColors({
 	/**
 	 * To rgb triplet.
 	 *
-	 * @param c - C input supplied to to rgb triplet's operation.
+	 * @param c - Color.js value to convert to a space-delimited RGB triplet.
 	 *
 	 * @return space-delimited RGB triplet string.
 	 */
@@ -481,7 +481,7 @@ function genRadixColors({
  *
  * @param src - Source string to normalize.
  * @param scales - Mapping of Radix scale names to their OKLCH representations.
- * @param bgColor - Bg color input supplied to get scale from color's operation.
+ * @param bgColor - Background color whose lightness sets the scale's starting progression.
  *
  * @return resolved value.
  */
@@ -624,7 +624,7 @@ function getTextColor(bg: Color) {
  * @param bgRgb - Bg RGB values the color will be composited over.
  * @param rgbPrecision - Precision multiplier for RGB calculations (typically 255).
  * @param alphaPrecision - Precision multiplier applied to the alpha channel.
- * @param tAlpha - T alpha input supplied to get alpha color's operation.
+ * @param tAlpha - Optional target opacity, quantized to `alphaPrecision`.
  *
  * @return resolved value.
  */
@@ -655,7 +655,7 @@ function getAlphaColor(tRgb: number[], bgRgb: number[], rgbPrecision: number, al
 	/**
 	 * Clamps rgb.
 	 *
-	 * @param n - N input supplied to clamp rgb's operation.
+	 * @param n - RGB channel value to clamp to the configured precision range.
 	 *
 	 * @return Clamped numeric value.
 	 */
@@ -699,7 +699,7 @@ function getAlphaColor(tRgb: number[], bgRgb: number[], rgbPrecision: number, al
  * @param fg - fg color channel value.
  * @param alpha - Alpha coefficient in the range 0–1.
  * @param bg - Bg color channel value.
- * @param round - Round input supplied to blend alpha's operation.
+ * @param round - Whether to round foreground and background contributions separately.
  *
  * @return blend Alpha.
  */
@@ -712,8 +712,8 @@ function blendAlpha(fg: number, alpha: number, bg: number, round = true) {
  * Produces an sRGB hex string with alpha that visually matches the tgt on the bg.
  *
  * @param tColor - Hex color string to approximate with transparency.
- * @param bgColor - Bg color input supplied to get alpha color srgb's operation.
- * @param tAlpha - T alpha input supplied to get alpha color srgb's operation.
+ * @param bgColor - sRGB background color over which the target should appear.
+ * @param tAlpha - Optional target opacity, quantized to 8-bit alpha.
  *
  * @return resolved value.
  */
@@ -741,8 +741,8 @@ function getAlphaColorSrgb(tColor: string, bgColor: string, tAlpha?: number) {
  * Produces a Display-P3 color string with alpha that matches the tgt on the bg.
  *
  * @param tColor - Display-P3 color string to approximate.
- * @param bgColor - Bg color input supplied to get alpha color p3's operation.
- * @param tAlpha - T alpha input supplied to get alpha color p3's operation.
+ * @param bgColor - Display-P3 background color over which the target should appear.
+ * @param tAlpha - Optional target opacity, quantized to 1000 alpha steps.
  *
  * @return resolved value.
  */

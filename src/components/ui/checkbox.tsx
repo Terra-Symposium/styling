@@ -25,9 +25,6 @@ COMPONENTS
 /**
  * Styled checkbox component built on top of Radix UI's checkbox primitive.
  *
- * @param className - Optional style overrides for the checkbox root.
- * @param props - Additional props forwarded to CheckboxPrimitive.Root.
- *
  * @returns A themed checkbox with focus, disabled, and checked states.
  */
 const Checkbox = React.forwardRef<
@@ -80,8 +77,6 @@ const Checkbox = React.forwardRef<
 /**
  * Checkbox indicator component for custom icon or mark rendering.
  *
- * @param className - Optional style overrides for the indicator container.
- * @param props - Additional props forwarded to CheckboxPrimitive.Indicator.
  */
 const CheckboxIndicator = Object.assign(
 	React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Indicator>, React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Indicator>>(({ className, ...props }, ref): React.JSX.Element => (

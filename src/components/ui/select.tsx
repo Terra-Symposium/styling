@@ -78,7 +78,6 @@ const SelectValue = SelectPrimitive.Value;
 /**
  * Clickable trigger that opens the select content.
  *
- * @param className - Optional style overrides for the trigger.
  * @param children - Trigger label and value content.
  *
  * @returns A control that toggles the select menu.
@@ -186,7 +185,6 @@ const SelectScrollDownButton = React.forwardRef<
 /**
  * Overlay panel that renders the select options.
  *
- * @param className - Optional style overrides for the content surface.
  * @param children - Option groups and items to render.
  * @param position - Positioning strategy for the content (default: 'popper').
  *

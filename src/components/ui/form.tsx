@@ -21,12 +21,11 @@ IMPORTS
 
 // API
 import { cn } from '../../lib/cn.js';
-import { useFormContext } from 'react-hook-form';
+import { Controller, FormProvider, useFormContext } from 'react-hook-form';
 
 // COMPONENTS
 import * as LabelPrimitive from '@radix-ui/react-label';
 import * as React from 'react';
-import { Controller, FormProvider } from 'react-hook-form';
 import { Slot } from '@radix-ui/react-slot';
 
 // DATA
@@ -86,21 +85,23 @@ const useFormField = () => {
  * @param props - Form control props forwarded to the rendered field.
  * @return A controller connected to the current form field context.
  */
-const FormField = <TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>({
-	...props
-}: ControllerProps<TFieldValues, TName>): React.JSX.Element => {
-	// prettier-ignore
-	return (<FormFieldCtx.Provider value={{ name: props.name }}><Controller {...props} /></FormFieldCtx.Provider>);
-};
+const FormField = <TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: ControllerProps<TFieldValues, TName>): React.JSX.Element => (
+	<FormFieldCtx.Provider value={{ name: props.name }}>
+		<Controller {...props} />
+	</FormFieldCtx.Provider>
+);
 const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref): React.JSX.Element => {
-	// prettier-ignore
-	return (<FormItemCtx.Provider value={{ id: (React.useId()) }}><div ref={ref} className={cn('space-y-2', className)} {...props} /></FormItemCtx.Provider>);
+	return (
+		<FormItemCtx.Provider value={{ id: React.useId() }}>
+			<div ref={ref} className={cn('space-y-2', className)} {...props} />
+		</FormItemCtx.Provider>
+	);
 });
 const FormLabel = React.forwardRef<React.ElementRef<typeof LabelPrimitive.Root>, React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>>(({ className, ...props }, ref): React.JSX.Element => {
 	const { error, formItemId } = useFormField();
 	return <LabelPrimitive.Root ref={ref} className={cn(FORM_LABEL_VARIANTS(), error && 'text-rose-600', 'font-semibold', className)} htmlFor={formItemId} {...props} />;
 });
-const FormControl = React.forwardRef<React.ElementRef<typeof Slot>, React.ComponentPropsWithoutRef<typeof Slot>>(({ ...props }, ref): React.JSX.Element => {
+const FormControl = React.forwardRef<React.ElementRef<typeof Slot>, React.ComponentPropsWithoutRef<typeof Slot>>((props, ref): React.JSX.Element => {
 	const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
 	return <Slot ref={ref} id={formItemId} aria-describedby={!error ? formDescriptionId : `${formDescriptionId} ${formMessageId}`} aria-invalid={!!error} {...props} />;
 });

@@ -25,8 +25,6 @@ const Tabs = TabsPrimitive.Root;
 /**
  * Tabs list container primitive.
  *
- * @param className - Optional class name applied to the tabs list.
- * @param props - Additional tab list props forwarded to the primitive.
  */
 const TabsList = React.forwardRef<React.ElementRef<typeof TabsPrimitive.List>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & { variant?: 'default' | 'line' | 'dashboard-nav' }>(({ className, variant = 'default', ...props }, ref): React.JSX.Element => (
 	<TabsPrimitive.List data-slot='tabs-list' data-variant={variant} ref={ref} aria-label={props['aria-label'] ?? 'Tab options'} className={cn('mb-2 inline-flex items-center justify-center gap-2', variant === 'line' && 'gap-1 rounded-none bg-transparent', variant === 'dashboard-nav' && 'h-auto w-max min-w-max justify-start gap-[2.35rem] rounded-none bg-transparent p-0 max-[1440px]:gap-2 max-[1180px]:gap-1 max-[640px]:gap-3', className)} {...props} />
@@ -35,8 +33,6 @@ const TabsList = React.forwardRef<React.ElementRef<typeof TabsPrimitive.List>, R
 /**
  * Tabs trigger button primitive.
  *
- * @param className - Optional class name applied to the tabs trigger.
- * @param props - Additional tab trigger props forwarded to the primitive.
  */
 type TabActionVariant = ButtonVariant;
 const TabsTrigger = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Trigger>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & { variant?: TabActionVariant | 'dashboard-nav'; selection?: 'none' | 'surface' | 'line' }>(
@@ -64,8 +60,6 @@ const TabsTrigger = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Trigg
 /**
  * Tabs content panel primitive.
  *
- * @param className - Optional class name applied to the tabs content panel.
- * @param props - Additional tab content props forwarded to the primitive.
  */
 const TabsContent = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Content>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>>(
 	({ className, ...props }, ref): React.JSX.Element => (
